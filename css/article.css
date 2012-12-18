@@ -139,6 +139,22 @@ p {
   margin-right: 2rem;
 }
 
+figure {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -moz-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+figure .image-container,
+figure figcaption {
+  -webkit-flex: 1 25rem;
+  -moz-flex: 1 25rem;
+  flex: 1 25rem;
+}
+
 figure > p {
   margin: 0 !important;
   padding: 0 !important;
@@ -153,6 +169,8 @@ figure > p[content-type="supplemental-figure"] {
 section p > figure, section p > .table-wrap {
   margin-left: -2rem !important;
   margin-right: -2rem !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
 }
 
 p > .row {

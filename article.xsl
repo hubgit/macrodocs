@@ -220,14 +220,14 @@
 
   <!-- figure -->
   <xsl:template match="fig">
-    <figure class="{local-name()} row-fluid">
+    <figure class="{local-name()}">
       <xsl:apply-templates select="@*"/>
 
-      <div class="image-container span6">
+      <div class="image-container">
         <xsl:apply-templates select="graphic" mode="fig"/>
       </div>
 
-      <figcaption class="span6">
+      <figcaption>
         <xsl:apply-templates select="label"/>
         <xsl:apply-templates select="caption"/>
       </figcaption>

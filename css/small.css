@@ -58,6 +58,13 @@ figcaption .heading {
 	padding-right: 0 !important;
 }
 
+section p > figure, section p > .table-wrap {
+  margin-left: -1rem !important;
+  margin-right: -1rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
 .body > section > section {
 	margin: 1rem;
 }
