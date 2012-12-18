@@ -67,6 +67,7 @@ figure .image-container {
 
 figure img {
 	margin: 0 2rem 1rem 0;
+  max-height: 840px;
 }
 
 figcaption .heading,
