@@ -1,0 +1,13 @@
+.popover {
+	font-size: 80%;
+	width: 400px;
+}
+
+.popover-content .badge,
+.popover-content .article-title {
+	display: none;
+}
+
+.popover h3 {
+	padding: 8px 14px !important;
+}

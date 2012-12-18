@@ -1,0 +1,183 @@
+.comments-toggle {
+	display: block;
+	padding: 1rem;
+	width: 0px;
+	height: 0px;
+	background: transparent url("comments.svg") no-repeat;
+	background-position: center;
+	background-size: 1.5rem 1.5rem;
+	margin-top: -2rem;
+	margin-bottom: -2rem;
+	cursor: pointer;
+	position: relative;
+	z-index: 20;
+	opacity: 0;
+	left: -1rem;
+	top: -2rem;
+}
+
+section:hover .comments-toggle {
+	opacity: 0.2;
+}
+
+.comments-toggle:hover {
+	opacity: 1.0 !important;
+}
+
+.comments {
+	display: none;
+	background-color: #F8F8F8;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border-top: none;
+	margin-top: -3em;
+	border-radius: 3px;
+	position: relative;
+	padding: 2rem 1rem 1rem;
+	line-height: 1;
+	font-size: 90%;
+}
+
+.comment, .comment-form-full {
+	display: -webkit-flex;
+}
+
+.comment {
+	margin: 1rem 0;
+}
+
+.comments .comment:last-of-type {
+	margin-bottom: 0;
+}
+
+.comment .comment {
+	margin-left: -1.5rem;
+}
+
+.comment-part, .comment-form-part {
+	-webkit-flex: 0 auto;
+	padding: 0.25rem;
+}
+
+.annotation-created {
+	font-size: 80%;
+	color: #999;
+	margin-left: 0.25em;
+}
+
+.annotation-text {
+	margin-top: 0.5rem;
+}
+
+.comment-form {
+	box-sizing: border-box;
+	margin-top: 1rem;
+}
+
+.comment-form input[type=text], .comment-form-full textarea {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.comment-form input[type=text] {
+	padding: 15px 10px;
+}
+
+.comment-form-main {
+	width: 100%;
+}
+
+.comment-form-full {
+	margin-top: 1rem;
+}
+
+.comments .comment-form-full {
+	display: none;
+}
+
+.comments.focussed .comment-form {
+	display: none;
+}
+
+.comments.focussed .comment-form-full {
+	display: -webkit-flex;
+}
+
+.comments-count {
+	font-weight: bold;
+	cursor: pointer;
+	margin-bottom: 0.5rem;
+	display: inline-block;
+}
+
+.comments-count:hover {
+	text-decoration: underline;
+}
+
+.comments-count:after {
+	content: "»";
+	position: absolute;
+	display: inline-block;
+	-webkit-transform: rotate(90deg);
+	margin-left: 0.5rem;
+}
+
+.comments-hide {
+	display: none;
+}
+
+.comments-expanded .comments-count {
+	display: none;
+}
+
+.comments-expanded .comments-hide {
+	display: block;
+}
+
+.comments-expanded .comments-count:after {
+	-webkit-transform: rotate(-90deg);
+}
+
+.comments-count:after:hover {
+	text-decoration: none;
+}
+
+.comments .comment {
+      display: none;
+}
+
+.comments-expanded .comment, .comments .comment-last {
+	display: -webkit-flex;
+}
+
+.anchor {
+	padding-left: 30px;
+	margin-left: -30px;
+	cursor: pointer;
+	position: absolute;
+	left: 10px;
+}
+
+.mini-icon {
+	visibility: hidden;
+	display: inline-block;
+	text-decoration: inherit;
+	line-height: 1;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.heading:hover .mini-icon{
+	visibility: visible;
+}
+
+.mini-icon:before {
+	content: "#";
+	color: gray;
+}
+
+@media (max-width: 768px) {
+	.comments-toggle {
+		margin-bottom: -1px;
+	}
+}
+

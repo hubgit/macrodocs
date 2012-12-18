@@ -1,0 +1,68 @@
+.ref-list {
+  display: table;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ref-list .ref {
+  display: table-row;
+  margin-bottom: 10px;
+}
+
+.ref-list .ref .ref-label,
+.ref-list .ref .citation {
+  display: table-cell;
+}
+
+.ref-list .ref .ref-label {
+  text-align: right;
+  padding: 0 5px;
+}
+
+.ref-list .citation {
+  padding-bottom: 10px;
+}
+
+.citation .source  {
+  font-style: italic;
+  margin: 0 5px;
+}
+
+.citation .pub-id {
+  display: none;
+}
+
+.citation .person-group .name:not(:last-of-type):after {
+  content: ", ";
+}
+
+.citation .person-group .etal:after {
+  content: "";
+}
+
+.person-group {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.person-group li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+/*
+.ref-list-container {
+  -moz-columns: 400px 2;
+  -webkit-columns: 400px 2;
+  columns: 400px 2;
+}
+
+.ref {
+  -webkit-column-break-inside: avoid;
+  column-break-inside: avoid;
+  break-inside: avoid-column;
+}
+*/

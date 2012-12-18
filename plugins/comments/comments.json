@@ -1,0 +1,49 @@
+{
+	"totalResults": 6143,
+	"startIndex": 0,
+	"itemsPerPage": 20,
+	"query": {
+		"searchTerms": "fishing",
+		"startPage": 1
+	},
+	"items": [
+		{
+			"url": "http://example.com/annotations/annotation-1",
+			"kind": "comment",
+			"text": "Nice experiment!",
+			"published": "2012-10-01T12:12:12Z",
+			"actor": {
+				"url": "http://orcid.org/person-1",
+				"displayName": "Commenter One",
+				"image": {
+					"url": "https://lh3.googleusercontent.com/-EHMuXvuZH1k/AAAAAAAAAAI/AAAAAAAAEcU/3z6LslnQ-U0/s32-c-k/photo.jpg"
+				}
+			},
+			"target": {
+				"url": "http://macrodocs.org/plos:10.1371/journal.pone.0044337",
+				"type": "element",
+				"id": "s2a"
+			}
+		},
+		{
+			"url": "http://example.com/annotations/annotation-2",
+			"reply-to": "http://example.com/annotations/annotation-1",
+			"kind": "comment",
+			"text": "Thanks!",
+			"published": "2012-10-02T12:12:12Z",
+			"actor": {
+				"url": "http://orcid.org/person-2",
+				"displayName": "Alf Eaton",
+				"image": {
+					"url": "https://lh3.googleusercontent.com/-EHMuXvuZH1k/AAAAAAAAAAI/AAAAAAAAEcU/3z6LslnQ-U0/s32-c-k/photo.jpg"
+				}
+			},
+			"target": {
+				"url": "http://macrodocs.org/plos:10.1371/journal.pone.0044337",
+				"type": "element",
+				"id": "s2a"
+			}
+		}
+
+	]
+}
