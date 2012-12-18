@@ -150,12 +150,10 @@ figure > p[content-type="supplemental-figure"] {
   padding: 1rem 0;
 }
 
-/*
-p > figure, p > .table-wrap {
+section p > figure, section p > .table-wrap {
   margin-left: -2rem !important;
   margin-right: -2rem !important;
 }
-*/
 
 p > .row {
   width: auto;
