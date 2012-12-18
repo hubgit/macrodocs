@@ -175,7 +175,7 @@
 
   <!-- section headings -->
   <xsl:template match="title | fig/label | table-wrap/label">
-    <xsl:variable name="hierarchy" select="count(ancestor::sec | ancestor::back | ancestor::fig)"/>
+    <xsl:variable name="hierarchy" select="count(ancestor::sec | ancestor::back | ancestor::fig | ancestor::table-wrap)"/>
 
     <xsl:if test="$hierarchy > 4">
       <xsl:variable name="hierarchy">6</xsl:variable>
