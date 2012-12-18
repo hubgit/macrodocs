@@ -160,6 +160,10 @@ figure figcaption {
   flex: 1 25rem;
 }
 
+figure figcaption {
+  margin-left: 2rem;
+}
+
 figure > p {
   margin: 0 !important;
   padding: 0 !important;
