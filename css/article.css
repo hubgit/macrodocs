@@ -318,6 +318,7 @@ thead, th {
 
 td {
   text-align: right;
+  border: 1px solid #CCC;
 }
 
 ul, ol {
