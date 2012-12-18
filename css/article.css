@@ -46,6 +46,11 @@ h4 {
   padding: 0 2rem;
 }
 
+p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 figure, .table-wrap {
   padding: 2rem 3rem 1rem;
   margin: 2rem 0;
