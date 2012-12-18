@@ -11,10 +11,14 @@ $(document).on("article.loaded", function(event, article){
 	article.find("h2").each(function() {
 		var node = $(this);
 
-		var heading = node.text().toLowerCase();
+		var heading = $.trim(node.text().toLowerCase());
 
 		if (!sections["methods"] && heading.match(/\bmethods\b/)) {
 			heading = "methods";
+		}
+
+		if (!sections["results"] && heading.match(/\bresults\b/)) {
+			heading = "results";
 		}
 
 		sections[heading] = node.closest("section");
