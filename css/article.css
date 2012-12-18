@@ -322,7 +322,8 @@ ul, ol {
 }
 
 li p {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
 }
 
 .body > p {
