@@ -264,10 +264,11 @@
   <!-- acknowledgments -->
   <xsl:template match="ack">
     <section class="{local-name()}">
+      <xsl:apply-templates select="@*"/>
       <xsl:if test="not(sec)">
         <h2 class="heading">Acknowledgments</h2>
       </xsl:if>
-      <xsl:apply-templates select="node()|@*"/>
+      <xsl:apply-templates select="node()"/>
     </section>
   </xsl:template>
 
