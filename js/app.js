@@ -62,6 +62,16 @@ $(function() {
 		article.appendTo("body");
 
 		$(document).trigger("article.ready", article);
+
+		var id = location.hash;
+		if (id) {
+			var targetNode = $(id);
+			if (targetNode.length) {
+				$("html, body").animate({
+				   scrollTop: targetNode.offset().top
+				}, 500);
+			}
+		}
 	};
 
 	var xmlURL = function() {
@@ -96,11 +106,11 @@ $(function() {
 		$.ajax({
 			url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
 			data: {
-			    tool: "macrodocs",
-			    email: "alf@hubmed.org",
-			    db: "pmc",
-			    retmax: 1,
-			    term: data.doi + "[DOI]"
+				tool: "macrodocs",
+				email: "alf@hubmed.org",
+				db: "pmc",
+				retmax: 1,
+				term: data.doi + "[DOI]"
 			},
 			dataType: "xml",
 			success: function(doc) {

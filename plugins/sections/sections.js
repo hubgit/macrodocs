@@ -33,7 +33,7 @@ $(document).on("article.loaded", function(event, article){
 	article.find("h2").each(function() {
 		var node = $(this);
 
-		var heading = $.trim(node.text().toLowerCase());
+		var heading = $.trim(node.text().toLowerCase().replace(/^[^a-z]+/, ""));
 
 		node.text(heading.toProperCase().replace(/ And /g, " and "));
 
@@ -66,7 +66,11 @@ $(document).on("article.loaded", function(event, article){
 			section.prepend(node);
 		}
 
-		sections[heading] = node.closest("section");
+		if (!section.attr("id")) {
+			section.attr("id", heading.toLowerCase().replace(/\W/, "-"));
+		}
+
+		sections[heading] = section;
 	});
 
 	if (sections["methods"] && sections["results"]) {
