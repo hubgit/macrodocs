@@ -1,7 +1,7 @@
 header {
   font-family: "Lora", serif;
 	text-align: center;
-	padding: 0 2rem;
+	padding: 0 4rem;
   margin: 2rem 0;
 }
 
@@ -68,11 +68,13 @@ section section .table-wrap {
 
 figure .image-container {
   text-align: right;
+  margin-right: 2rem;
 }
 
 figure img {
 	margin: 0 2rem 1rem 0;
   max-height: 840px;
+  cursor: pointer;
 }
 
 figcaption .heading,
@@ -158,10 +160,6 @@ figure figcaption {
   -webkit-flex: 1 25rem;
   -moz-flex: 1 25rem;
   flex: 1 25rem;
-}
-
-figure figcaption {
-  margin-left: 2rem;
 }
 
 figure > p {
@@ -383,4 +381,25 @@ tr:nth-of-type(even) td {
 a.xref[ref-type="table-fn"] {
   vertical-align: super;
   font-size: smaller;
+}
+
+section.collapsed > * {
+  display: none;
+}
+
+section.collapsed > h2 {
+  display: block;
+}
+
+section .show {
+  display: none;
+  cursor: pointer;
+}
+
+section .show:hover {
+  color: white;
+}
+
+section.collapsed .show {
+  display: block;
 }

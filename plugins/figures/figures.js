@@ -19,4 +19,9 @@ $(document).on("article.loaded", function(event, article){
 			section.append(node);
 		}
 	});
+
+	article.on("click", "figure img", function() {
+		var href = $(this).attr("src");
+		window.open(href);
+	});
 });
