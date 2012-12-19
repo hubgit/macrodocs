@@ -35,7 +35,7 @@ $(document).on("article.loaded", function(event, article){
 
 		var heading = $.trim(node.text().toLowerCase().replace(/^[^a-z]+/, ""));
 
-		node.text(heading.toProperCase().replace(/ And /g, " and "));
+		node.text(heading.toProperCase().replace(/ (And|Of) /g, function(text) { return text.toLowerCase() }));
 
 		if (!sections["methods"] && heading.match(/\bmethods\b/)) {
 			heading = "methods";
@@ -67,7 +67,7 @@ $(document).on("article.loaded", function(event, article){
 		}
 
 		if (!section.attr("id")) {
-			section.attr("id", heading.toLowerCase().replace(/\W/, "-"));
+			section.attr("id", heading.toLowerCase().replace(/\W/g, "-"));
 		}
 
 		sections[heading] = section;
