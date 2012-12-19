@@ -90,7 +90,10 @@ $(document).on("article.ready", function(event, article){
 								$("<li/>").append(title).appendTo(container);
 							});
 
-							article.append(container);
+							var heading = $("<h2/>", { text: "Related Articles" }).addClass("heading");
+							var section = $("<section/>", { id: "related-articles" }).append(heading).append(container);
+
+							article.find("footer").append(section);
 						}
 					});
 				}
