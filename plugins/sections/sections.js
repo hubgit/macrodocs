@@ -73,7 +73,7 @@ $(document).on("article.loaded", function(event, article){
 		sections["results"].after(sections["methods"]);
 	}
 
-	var collapsedSections = ["methods", "references", "supporting", "acknowledgements"];
+	var collapsedSections = ["methods", "references", "supporting", "acknowledgements", "acknowledgments"];
 
 	$.each(collapsedSections, function(index, item) {
 		if (typeof sections[item] !== "undefined" && sections[item]) {

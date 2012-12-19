@@ -90,7 +90,7 @@ $(document).on("article.ready", function(event, article){
 								$("<li/>").append(title).appendTo(container);
 							});
 
-							article.prepend(container);
+							article.append(container);
 						}
 					});
 				}
