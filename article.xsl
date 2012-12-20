@@ -307,11 +307,16 @@
         </xsl:choose>
       </div>
       <div>
-        <xsl:apply-templates select="year"/>
+        <xsl:apply-templates select="year" mode="citation"/>
         <xsl:apply-templates select="source"/>
         <!--<xsl:apply-templates select="volume"/><xsl:if test="fpage">:</xsl:if><xsl:apply-templates select="fpage"/>-->
       </div>
     </div>
+  </xsl:template>
+
+  <!-- year badge in ref-list -->
+  <xsl:template match="year" mode="citation">
+    <span class="year badge badge-success"><xsl:apply-templates select="node()|@*"/></span>
   </xsl:template>
 
   <!-- article title in references -->

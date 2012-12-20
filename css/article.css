@@ -271,11 +271,14 @@ p > .row {
   cursor: pointer;
 }
 
+
 .ref-list .badge {
   margin-right: 5px;
+  /*
   background: none;
   padding: 0;
   color: black;
+  */
   font-weight: normal;
 }
 
