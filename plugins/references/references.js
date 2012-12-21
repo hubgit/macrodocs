@@ -115,4 +115,10 @@ $(document).on("article.ready", function(event, article){
 		.css({ left: position.left + node.width() + 10, top: position.top - 6 })
 		.show();
 	});
+
+	var refList = article.find(".ref-list");
+
+	refList.find(".ref").sort(function(a, b) {
+		return $(".year", b).text() - $(".year", a).text();
+	}).appendTo(refList);
 });
