@@ -3,7 +3,7 @@ $(document).on("article.loaded", function(event, article){
 
 	/* http://stackoverflow.com/a/5574446/145899 */
 	String.prototype.toProperCase = function () {
-	    return this.replace(/\w\S*/g, function(txt){
+	    return this.replace(/\w[^\s-]*/g, function(txt){
 	    	return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 	    });
 	};
@@ -35,7 +35,7 @@ $(document).on("article.loaded", function(event, article){
 
 		var heading = $.trim(node.text().toLowerCase().replace(/^[^a-z]+/, ""));
 
-		node.text(heading.toProperCase().replace(/ (And|Of) /g, function(text) { return text.toLowerCase() }));
+		node.text(heading.toProperCase().replace(/\b(And|Of|The)\b/g, function(text) { return text.toLowerCase() }));
 
 		if (!sections["methods"] && heading.match(/\bmethods\b/)) {
 			heading = "methods";

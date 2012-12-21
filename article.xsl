@@ -24,7 +24,7 @@
         <xsl:apply-templates select="article-meta/contrib-group/contrib[@contrib-type='author']/name"/>
       </div>
 
-      <div class="context" data-ignore-class="">
+      <p class="context" data-ignore-class="">
         <xsl:text>Published in </xsl:text>
 
         <xsl:choose>
@@ -66,11 +66,33 @@
             <xsl:if test="$date/day">-<xsl:value-of select="format-number($date/day, '00')"/></xsl:if>
           </time>
         </a>
-      </div>
+      </p>
     </header>
   </xsl:template>
 
+  <xsl:template name="toc">
+    <ol class="toc">
+      <xsl:for-each select="sec">
+          <li>
+            <xsl:choose>
+              <xsl:when test="@id">
+                <a href="#{@id}"><xsl:apply-templates select="title/node()"/></a>
+              </xsl:when>
+              <xsl:otherwise>
+                <span><xsl:apply-templates select="title/node()"/></span>
+              </xsl:otherwise>
+            </xsl:choose>
+            <xsl:call-template name="toc"/>
+          </li>
+      </xsl:for-each>
+    </ol>
+  </xsl:template>
+
   <xsl:template match="body">
+    <nav>
+      <xsl:call-template name="toc"/>
+    </nav>
+
     <main class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </main>
@@ -117,16 +139,9 @@
 
   <!-- people -->
   <xsl:template match="person-group">
-    <ol class="{local-name()}">
+    <div class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
-    </ol>
-  </xsl:template>
-
-  <!-- person in a list -->
-  <xsl:template match="person-group/name">
-    <li class="{local-name()}">
-      <xsl:call-template name="name"/>
-    </li>
+    </div>
   </xsl:template>
 
   <!-- name -->
@@ -143,6 +158,7 @@
     <span class="{local-name()}">
       <xsl:call-template name="name"/>
     </span>
+    <xsl:if test="not(position() = last())">, </xsl:if>
   </xsl:template>
 
   <!-- style elements -->
@@ -276,9 +292,9 @@
   <xsl:template match="ref-list">
     <xsl:apply-templates select="title|@*"/>
     <div class="ref-list-container" data-ignore-class="">
-      <ol class="{local-name()}">
+      <ul class="{local-name()}">
         <xsl:apply-templates select="ref|@*"/>
-      </ol>
+      </ul>
     </div>
   </xsl:template>
 
@@ -308,6 +324,7 @@
       </div>
       <div>
         <xsl:apply-templates select="year"/>
+        <xsl:text> </xsl:text>
         <xsl:apply-templates select="source"/>
         <!--<xsl:apply-templates select="volume"/><xsl:if test="fpage">:</xsl:if><xsl:apply-templates select="fpage"/>-->
       </div>
@@ -321,7 +338,7 @@
 
   <!-- "et al" -->
   <xsl:template match="mixed-citation/person-group/etal">
-    <li class="{local-name()}">et al.</li>
+    <span class="{local-name()}">et al.</span>
   </xsl:template>
 
   <!-- block elements -->

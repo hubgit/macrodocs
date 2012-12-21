@@ -244,10 +244,6 @@ p > .row {
   text-decoration: underline;
 }
 
-.authors .name:not(:last-of-type):after {
-	content: ", ";
-}
-
 .name {
 	white-space: nowrap;
 }
@@ -408,4 +404,13 @@ section .show:hover {
 
 section.collapsed .show {
   display: block;
+}
+
+nav {
+  margin-left: 3em;
+}
+
+.toc {
+  list-style-type: square;
+  margin-left: 2rem;
 }
