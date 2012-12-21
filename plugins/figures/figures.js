@@ -18,11 +18,10 @@ $(document).on("article.loaded", function(event, article){
 		if (!node.closest("section").is(section)) {
 			section.append(node);
 		}
+	});
 
-		var p = node.closest("p");
-		if (p.length) {
-			p.after(node);
-		}
+	article.find("p").each(function() {
+		$(this).find("figure,.table-wrap").insertAfter(this);
 	});
 
 	article.on("click", "figure img", function() {

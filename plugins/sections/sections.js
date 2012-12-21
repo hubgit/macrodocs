@@ -51,7 +51,7 @@ $(document).on("article.loaded", function(event, article){
 
 		var section = node.parent("section");
 
-		if (!section.length && node.tagName == "H2") {
+		if (!section.length && node.get(0).tagName == "H2") {
 			section = $("<section/>");
 			node.before(section);
 
