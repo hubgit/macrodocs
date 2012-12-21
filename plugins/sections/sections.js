@@ -30,10 +30,10 @@ $(document).on("article.loaded", function(event, article){
 		references: null
 	};
 
-	article.find("h2").each(function() {
+	article.find("main,footer").find(":header").each(function() {
 		var node = $(this);
 
-		var heading = $.trim(node.text().toLowerCase().replace(/^[^a-z]+/, ""));
+		var heading = $.trim(node.text().toLowerCase().replace(/^[^a-z]+/, "").replace(/\.$/, ""));
 
 		node.text(heading.toProperCase().replace(/\b(And|Of|The)\b/g, function(text) { return text.toLowerCase() }));
 
@@ -49,11 +49,12 @@ $(document).on("article.loaded", function(event, article){
 			heading = "supporting";
 		}
 
-		var section = node.closest("section");
+		var section = node.parent("section");
 
 		if (!section.length) {
 			section = $("<section/>");
 			node.before(section);
+
 
 			node.nextAll().each(function() {
 				if (this.tagName == "H2") {
@@ -66,9 +67,10 @@ $(document).on("article.loaded", function(event, article){
 			section.prepend(node);
 		}
 
-		if (!section.attr("id")) {
+		//if (!section.attr("id")) {
+			console.log(heading)
 			section.attr("id", heading.toLowerCase().replace(/\W/g, "-"));
-		}
+		//}
 
 		sections[heading] = section;
 	});

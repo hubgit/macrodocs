@@ -115,6 +115,4 @@ $(document).on("article.ready", function(event, article){
 		.css({ left: position.left + node.width() + 10, top: position.top - 6 })
 		.show();
 	});
-
-	article.find("footer .ref-list .ref .label").removeClass("label").addClass("badge").wrap("<span class='ref-label'/>");
 });

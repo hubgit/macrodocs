@@ -5,60 +5,36 @@
   padding: 0;
 }
 
-.ref-list .ref {
+.ref {
   display: table-row;
   margin-bottom: 10px;
 }
 
-.ref-list .ref .ref-label,
-.ref-list .ref .citation {
+.ref > * {
   display: table-cell;
+  padding: 0 0.5rem 0.5rem;
 }
 
-.ref-list .ref .ref-label {
+.ref .ref-publication {
+  white-space: nowrap;
+}
+
+.ref .label {
   text-align: right;
-  padding: 0 5px;
 }
 
-.ref-list .citation {
-  padding-bottom: 10px;
-}
-
-.citation .source  {
+.ref .source  {
   font-style: italic;
-  margin: 0 5px;
 }
 
-.citation .pub-id {
+.ref .pub-id {
   display: none;
 }
 
-.citation .person-group .etal:after {
+.ref .person-group {
+  color: #555;
+}
+
+.ref .person-group .etal:after {
   content: "";
 }
-
-.person-group {
-  list-style-type: none;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-}
-
-.person-group li {
-  display: inline-block;
-  margin-right: 5px;
-}
-
-/*
-.ref-list-container {
-  -moz-columns: 400px 2;
-  -webkit-columns: 400px 2;
-  columns: 400px 2;
-}
-
-.ref {
-  -webkit-column-break-inside: avoid;
-  column-break-inside: avoid;
-  break-inside: avoid-column;
-}
-*/

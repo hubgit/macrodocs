@@ -66,9 +66,13 @@ $(function() {
 		var id = location.hash;
 		if (id) {
 			var targetNode = $(id);
+			targetNode.removeClass("collapsed");
+
 			if (targetNode.length) {
-				$("html, body").animate({
-				   scrollTop: targetNode.offset().top
+				window.setTimeout(function() {
+					$("html, body").animate({
+					   scrollTop: targetNode.offset().top
+					}, 500);
 				}, 500);
 			}
 		}

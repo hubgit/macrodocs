@@ -70,6 +70,7 @@
     </header>
   </xsl:template>
 
+  <!--
   <xsl:template name="toc">
     <ol class="toc">
       <xsl:for-each select="sec">
@@ -87,13 +88,14 @@
       </xsl:for-each>
     </ol>
   </xsl:template>
+-->
 
   <xsl:template match="body">
     <nav>
-      <xsl:call-template name="toc"/>
+      <!--<xsl:call-template name="toc"/>-->
     </nav>
 
-    <main class="{local-name()}">
+    <main class="{local-name()}" lang="en">
       <xsl:apply-templates select="node()|@*"/>
     </main>
   </xsl:template>
@@ -301,33 +303,33 @@
   <!-- reference list item -->
   <xsl:template match="ref-list/ref">
     <li class="{local-name()}">
-      <xsl:apply-templates select="node()|@*"/>
+      <xsl:apply-templates select="mixed-citation | citation | element-citation|@*"/>
     </li>
   </xsl:template>
 
   <!-- mixed citation -->
   <xsl:template match="mixed-citation | citation | element-citation">
-    <div class="{local-name()} citation">
-      <xsl:apply-templates select="article-title"/>
+    <div><xsl:apply-templates select="../label"/></div>
 
-      <div>
-        <xsl:choose>
-          <xsl:when test="person-group">
-            <xsl:apply-templates select="person-group"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <div class="person-group" data-ignore-class="">
-              <xsl:apply-templates select="name"/>
-            </div>
-          </xsl:otherwise>
-        </xsl:choose>
-      </div>
-      <div>
-        <xsl:apply-templates select="year"/>
-        <xsl:text> </xsl:text>
-        <xsl:apply-templates select="source"/>
-        <!--<xsl:apply-templates select="volume"/><xsl:if test="fpage">:</xsl:if><xsl:apply-templates select="fpage"/>-->
-      </div>
+    <div><xsl:apply-templates select="year"/></div>
+
+    <div class="ref-work">
+      <div><xsl:apply-templates select="article-title"/></div>
+
+      <xsl:choose>
+        <xsl:when test="person-group">
+          <xsl:apply-templates select="person-group"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <div class="person-group" data-ignore-class="">
+            <xsl:apply-templates select="name"/>
+          </div>
+        </xsl:otherwise>
+      </xsl:choose>
+    </div>
+
+    <div class="ref-publication">
+      <xsl:apply-templates select="source"/>
     </div>
   </xsl:template>
 
