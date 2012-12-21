@@ -35,7 +35,7 @@ $(document).on("article.loaded", function(event, article){
 
 		var heading = $.trim(node.text().toLowerCase().replace(/^[^a-z]+/, "").replace(/\.$/, ""));
 
-		node.text(heading.toProperCase().replace(/\b(And|Of|The)\b/g, function(text) { return text.toLowerCase() }));
+		//node.text(heading.toProperCase().replace(/[\s-\/](A|And|Of|The|In|Is|For)\b/g, function(text) { return text.toLowerCase() }));
 
 		if (!sections["methods"] && heading.match(/\bmethods\b/)) {
 			heading = "methods";
