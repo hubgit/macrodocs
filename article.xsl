@@ -283,7 +283,7 @@
   <xsl:template match="ack">
     <section class="{local-name()}">
       <xsl:apply-templates select="@*"/>
-      <xsl:if test="not(sec)">
+      <xsl:if test="not(title)">
         <h2 class="heading">Acknowledgments</h2>
       </xsl:if>
       <xsl:apply-templates select="node()"/>
