@@ -67,7 +67,7 @@ section section .table-wrap {
 }
 
 figure .image-container {
-  text-align: right;
+  text-align: center;
   margin-right: 2rem;
 }
 
@@ -411,6 +411,9 @@ nav {
 }
 
 .toc {
-  list-style-type: square;
+  list-style-type: none;
+}
+
+.toc .toc {
   margin-left: 2rem;
 }
