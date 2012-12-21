@@ -51,10 +51,9 @@ $(document).on("article.loaded", function(event, article){
 
 		var section = node.parent("section");
 
-		if (!section.length) {
+		if (!section.length && node.tagName == "H2") {
 			section = $("<section/>");
 			node.before(section);
-
 
 			node.nextAll().each(function() {
 				if (this.tagName == "H2") {
@@ -68,7 +67,6 @@ $(document).on("article.loaded", function(event, article){
 		}
 
 		//if (!section.attr("id")) {
-			console.log(heading)
 			section.attr("id", heading.toLowerCase().replace(/\W/g, "-"));
 		//}
 
