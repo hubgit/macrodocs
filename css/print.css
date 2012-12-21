@@ -20,6 +20,7 @@ body {
 p {
 	text-align: justify;
 	margin-bottom: 0rem !important;
+	line-height: 1.2;
 }
 
 p:not(:first-of-type) {
