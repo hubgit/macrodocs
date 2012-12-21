@@ -62,6 +62,10 @@ h2 {
 	line-height: 1rem;
 }
 
+h3 {
+	font-size: 1.2rem;
+}
+
 section > p,
 section > div,
 footer > p,
@@ -122,4 +126,9 @@ section.collapsed .show {
 #related-articles {
 	display: none;
 }
+
+.toc {
+	display: none;
+}
+
 
