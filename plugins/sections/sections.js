@@ -3,7 +3,7 @@ $(document).on("article.loaded", function(event, article){
 
 	/* http://stackoverflow.com/a/5574446/145899 */
 	String.prototype.toProperCase = function () {
-	    return this.replace(/\w[^\s-]*/g, function(txt){
+	    return this.replace(/\w[^\s-\/]*/g, function(txt){
 	    	return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 	    });
 	};

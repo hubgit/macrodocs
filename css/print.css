@@ -14,6 +14,7 @@ html {
 
 body {
 	background: none;
+	line-height: 1;
 }
 
 p {
@@ -88,7 +89,7 @@ figure {
 }
 
 figure .image-container {
-  text-align: center;
+  	text-align: center;
 }
 
 [position="float"] {
@@ -107,5 +108,17 @@ figcaption .heading {
 
 .ref-list {
 	font-size: 80%;
+}
+
+section.collapsed > * {
+  	display: block;
+}
+
+section.collapsed .show {
+  	display: none;
+}
+
+#related-articles {
+	display: none;
 }
 
