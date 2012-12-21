@@ -1,7 +1,9 @@
 $(document).on("article.loaded", function(event, article){
 	var article = $(article);
 
-	article.find("figure,.table-wrap").each(function() {
+	var supportingSection = article.find(".supplementary-material").closest("section");
+
+	article.find("figure,.table-wrap,.supplementary-material").each(function() {
 		var node = $(this);
 		var id = node.attr("id");
 
@@ -28,4 +30,8 @@ $(document).on("article.loaded", function(event, article){
 		var href = $(this).attr("src");
 		window.open(href);
 	});
+
+	if (!supportingSection.find(".supplementary-material").length) {
+		supportingSection.remove();
+	}
 });

@@ -339,7 +339,7 @@
   </xsl:template>
 
   <!-- "et al" -->
-  <xsl:template match="mixed-citation/person-group/etal">
+  <xsl:template match="person-group/etal">
     <span class="{local-name()}">et al.</span>
   </xsl:template>
 

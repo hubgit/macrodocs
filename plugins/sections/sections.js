@@ -23,6 +23,8 @@ $(document).on("article.loaded", function(event, article){
 		$("<h2/>", { text: "Footnotes" }).addClass("heading").insertBefore(node);
 	});
 
+	article.find("main > p").wrapAll("<section/>");
+
 	var sections = {
 		introduction: null,
 		methods: null,
