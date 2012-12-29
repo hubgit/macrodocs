@@ -18,6 +18,9 @@
 
 .ref .ref-publication {
   white-space: nowrap;
+  max-width: 20em;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .ref .label {
