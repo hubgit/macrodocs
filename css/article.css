@@ -407,7 +407,7 @@ nav {
   margin-left: 3em;
 }
 
-#introduction p:first-of-type:first-letter {
+#introduction > p:first-of-type:first-letter {
   font-family: "Lora", sans-serif;
   float: left;
   font-size: 5rem;
