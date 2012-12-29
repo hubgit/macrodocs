@@ -134,9 +134,9 @@ p {
 }
 
 figure,
-table-wrap,
+.table-wrap,
 figure p,
-table-wrap p {
+.table-wrap p {
   font-family: Helvetica, Arial, sans-serif;
 }
 
