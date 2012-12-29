@@ -130,6 +130,14 @@ a {
 p {
   line-height: 1.5;
   margin-bottom: 1.5rem;
+  font-family: WebEgyptian, Georgia, serif;
+}
+
+figure,
+table-wrap,
+figure p,
+table-wrap p {
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .body > section > section {
@@ -402,8 +410,8 @@ nav {
 #introduction p:first-of-type:first-letter {
   font-family: "Lora", sans-serif;
   float: left;
-  font-size: 4rem;
+  font-size: 5rem;
   line-height: 1em;
-  margin: -0.25rem 0.25rem 0 0;
+  margin: -0.5rem 0.5rem 0 0;
 }
 

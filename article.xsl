@@ -9,7 +9,7 @@
 
   <!-- body of the article -->
   <xsl:template match="/">
-    <article>
+    <article itemscope="itemscope" itemtype="scholarlyarticle">
       <xsl:apply-templates select="article/front"/>
       <xsl:apply-templates select="article/body"/>
       <xsl:apply-templates select="article/back"/>
@@ -20,24 +20,26 @@
     <header class="{local-name()}">
       <xsl:apply-templates select="article-meta/title-group/article-title"/>
 
-      <div class="context authors" data-ignore-class="">
+      <div class="context authors" itemprop="authors" data-ignore-class="">
         <xsl:apply-templates select="article-meta/contrib-group/contrib[@contrib-type='author']/name"/>
       </div>
 
-      <p class="context" data-ignore-class="">
+      <p class="context event" data-ignore-class="">
         <xsl:text>Published in </xsl:text>
 
-        <xsl:choose>
-          <xsl:when test="journal-meta/journal-title-group">
-            <xsl:value-of select="journal-meta/journal-title-group/journal-title"/>
-          </xsl:when>
-          <xsl:when test="journal-meta/journal-title">
-            <xsl:value-of select="journal-meta/journal-title"/>
-          </xsl:when>
-          <xsl:when test="journal-meta/journal-id[@journal-id-type='nlm-ta']">
-            <xsl:value-of select="journal-meta/journal-id[@journal-id-type='nlm-ta']"/>
-          </xsl:when>
-        </xsl:choose>
+        <span>
+          <xsl:choose>
+            <xsl:when test="journal-meta/journal-title-group">
+              <xsl:value-of select="journal-meta/journal-title-group/journal-title"/>
+            </xsl:when>
+            <xsl:when test="journal-meta/journal-title">
+              <xsl:value-of select="journal-meta/journal-title"/>
+            </xsl:when>
+            <xsl:when test="journal-meta/journal-id[@journal-id-type='nlm-ta']">
+              <xsl:value-of select="journal-meta/journal-id[@journal-id-type='nlm-ta']"/>
+            </xsl:when>
+          </xsl:choose>
+        </span>
 
         <xsl:text> on </xsl:text>
 
@@ -60,7 +62,7 @@
             <xsl:value-of select="article-meta/article-id[@pub-id-type='doi']"/>
           </xsl:attribute>
 
-          <time>
+          <time itemprop="datePublished">
             <xsl:value-of select="$date/year"/>
             <xsl:if test="$date/month">-<xsl:value-of select="format-number($date/month, '00')"/></xsl:if>
             <xsl:if test="$date/day">-<xsl:value-of select="format-number($date/day, '00')"/></xsl:if>

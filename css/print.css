@@ -124,10 +124,7 @@ section.collapsed .show {
   	display: none;
 }
 
-#related-articles {
-	display: none;
-}
-
+#related-articles,
 .toc {
 	display: none;
 }

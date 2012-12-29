@@ -85,3 +85,11 @@ section p > figure, section p > .table-wrap {
 	margin-left: 0;
 	margin-right: 0;
 }
+
+nav {
+	margin-left: 0;
+}
+
+#related-articles ul {
+	margin-left: 1rem;
+}
