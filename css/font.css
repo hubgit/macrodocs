@@ -14,17 +14,8 @@ h2 {
 section > h3 {
 	font-family: "Lustria", serif;
 }
-
 main p {
 	font-family: "Georgia", serif;
-}
-
-#introduction > p:first-of-type:first-letter {
-  font-family: "Lustria", sans-serif;
-  float: left;
-  font-size: 4rem;
-  line-height: 1em;
-  margin: -0.2rem 0.5rem 0 0;
 }
 
 .btn {
@@ -36,4 +27,12 @@ figure,
 figure p,
 .table-wrap p {
 	font-family: inherit;
+}
+
+#introduction > p:first-of-type:first-letter {
+  font-family: "Lustria", sans-serif;
+  float: left;
+  font-size: 4rem;
+  line-height: 1em;
+  margin: -0.2rem 0.5rem 0 0;
 }

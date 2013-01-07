@@ -47,10 +47,6 @@ h2, h3, h4, h5, h6 {
 	font-weight: bold;
 }
 
-h1, h2, h3 {
-	padding: 0 2rem;
-}
-
 h1.article-title {
 	margin-top: 1em !important;
 }
@@ -66,12 +62,9 @@ h3 {
 	font-size: 1.2rem;
 }
 
-section > p,
-section > div,
-footer > p,
-footer > div {
-	margin-left: 2em;
-	margin-right: 2em;
+p {
+	orphans: 3;
+	widows: 3;
 }
 
 figure img {
@@ -127,6 +120,16 @@ section.collapsed .show {
 #related-articles,
 .toc {
 	display: none;
+}
+
+table { page-break-inside:auto; page-break-after:auto }
+tr    { page-break-inside:avoid; page-break-after:auto }
+td    { page-break-inside:avoid; page-break-after:auto }
+thead { display:table-header-group }
+tfoot { display:table-footer-group }
+
+.heading {
+	page-break-after:avoid;
 }
 
 
