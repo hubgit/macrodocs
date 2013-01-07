@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 }
 
+h1 {
+	font-family: "Lustria", serif;
+}
+
 h2 {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	font-weight: 100;
@@ -14,6 +18,7 @@ h2 {
 section > h3 {
 	font-family: "Lustria", serif;
 }
+
 main p {
 	font-family: "Georgia", serif;
 }
