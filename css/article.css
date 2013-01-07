@@ -1,5 +1,4 @@
 header {
-  font-family: "Lora", serif;
 	text-align: center;
 	padding: 0 4rem;
   margin: 2rem 0;
@@ -7,7 +6,6 @@ header {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Lora", serif;
 	color: #222;
   line-height: 1;
   margin-top: 1.5rem;
@@ -26,12 +24,10 @@ h1 {
 }
 
 h2 {
-  font-family: "Helvetica Neue", sans-serif;
   font-weight: 100;
 	background: #444;
 	color: #DDD8C5;
-  font-size: 2rem;
-  font-weight: 100;
+  font-size: 1.8rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
   line-height: 2;
@@ -130,7 +126,6 @@ a {
 p {
   line-height: 1.5;
   margin-bottom: 1.5rem;
-  font-family: WebEgyptian, Georgia, serif;
 }
 
 figure,
