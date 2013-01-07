@@ -1,11 +1,39 @@
-header, nav, h1, h2, h3, h4, h5, h6 {
-	font-family: "Lustria", serif;
+body {
+	font-family: "Helvetica", "Arial", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 }
 
+h2 {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	font-weight: 100;
+}
+
+section > h3 {
+	font-family: "Lustria", serif;
+}
+
 main p {
-	font-family: Georgia, serif;
+	font-family: "Georgia", serif;
+}
+
+#introduction > p:first-of-type:first-letter {
+  font-family: "Lustria", sans-serif;
+  float: left;
+  font-size: 4rem;
+  line-height: 1em;
+  margin: -0.2rem 0.5rem 0 0;
+}
+
+.btn {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+figure,
+.table-wrap,
+figure p,
+.table-wrap p {
+	font-family: inherit;
 }

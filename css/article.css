@@ -128,13 +128,6 @@ p {
   margin-bottom: 1.5rem;
 }
 
-figure,
-.table-wrap,
-figure p,
-.table-wrap p {
-  font-family: Helvetica, Arial, sans-serif;
-}
-
 .body > section > section {
   margin: 2rem;
   border: 1px solid transparent; /* enforce margins within */
@@ -400,16 +393,4 @@ section.collapsed .show {
 
 nav {
   margin-left: 3em;
-}
-
-#introduction > p:first-of-type:first-letter {
-  font-family: "Lora", sans-serif;
-  float: left;
-  font-size: 5rem;
-  line-height: 1em;
-  margin: -0.5rem 0.5rem 0 0;
-}
-
-.btn {
-  font-family: Helvetica, Arial, sans-serif;
 }
