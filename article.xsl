@@ -25,23 +25,7 @@
       </div>
 
       <p class="context event" data-ignore-class="">
-        <xsl:text>Published in </xsl:text>
-
-        <span>
-          <xsl:choose>
-            <xsl:when test="journal-meta/journal-title-group">
-              <xsl:value-of select="journal-meta/journal-title-group/journal-title"/>
-            </xsl:when>
-            <xsl:when test="journal-meta/journal-title">
-              <xsl:value-of select="journal-meta/journal-title"/>
-            </xsl:when>
-            <xsl:when test="journal-meta/journal-id[@journal-id-type='nlm-ta']">
-              <xsl:value-of select="journal-meta/journal-id[@journal-id-type='nlm-ta']"/>
-            </xsl:when>
-          </xsl:choose>
-        </span>
-
-        <xsl:text> on </xsl:text>
+        <xsl:text>Published on </xsl:text>
 
         <xsl:variable name="datetype">
            <xsl:choose>
@@ -68,6 +52,22 @@
             <xsl:if test="$date/day">-<xsl:value-of select="format-number($date/day, '00')"/></xsl:if>
           </time>
         </a>
+
+        <xsl:text> in </xsl:text>
+
+        <span>
+          <xsl:choose>
+            <xsl:when test="journal-meta/journal-title-group">
+              <xsl:value-of select="journal-meta/journal-title-group/journal-title"/>
+            </xsl:when>
+            <xsl:when test="journal-meta/journal-title">
+              <xsl:value-of select="journal-meta/journal-title"/>
+            </xsl:when>
+            <xsl:when test="journal-meta/journal-id[@journal-id-type='nlm-ta']">
+              <xsl:value-of select="journal-meta/journal-id[@journal-id-type='nlm-ta']"/>
+            </xsl:when>
+          </xsl:choose>
+        </span>
       </p>
     </header>
   </xsl:template>
