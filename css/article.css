@@ -332,6 +332,10 @@ td {
   border: 1px solid #CCC;
 }
 
+table *[align=left] td {
+  text-align: left;
+}
+
 ul, ol {
   margin:  0 0 1rem 4rem;
 }
