@@ -51,7 +51,7 @@
           </time>
         </a>
 
-        <xsl:text> in </xsl:text>
+        <xsl:text> · </xsl:text>
 
         <i>
           <xsl:choose>
