@@ -13,6 +13,7 @@
       <xsl:apply-templates select="article/front"/>
       <xsl:apply-templates select="article/body"/>
       <xsl:apply-templates select="article/back"/>
+      <xsl:apply-templates select="article/floats-group"/>
     </article>
   </xsl:template>
 
