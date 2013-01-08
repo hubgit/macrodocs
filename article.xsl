@@ -25,8 +25,6 @@
       </div>
 
       <p class="context event" data-ignore-class="">
-        <xsl:text>Published on </xsl:text>
-
         <xsl:variable name="datetype">
            <xsl:choose>
              <xsl:when test="article-meta/pub-date[@pub-type='epub']">
@@ -55,7 +53,7 @@
 
         <xsl:text> in </xsl:text>
 
-        <span>
+        <i>
           <xsl:choose>
             <xsl:when test="journal-meta/journal-title-group">
               <xsl:value-of select="journal-meta/journal-title-group/journal-title"/>
@@ -67,7 +65,7 @@
               <xsl:value-of select="journal-meta/journal-id[@journal-id-type='nlm-ta']"/>
             </xsl:when>
           </xsl:choose>
-        </span>
+        </i>
       </p>
     </header>
   </xsl:template>
