@@ -172,7 +172,7 @@
   </xsl:template>
 
   <!-- inline elements -->
-  <xsl:template match="abbrev | surname | given-names | email | label | year | month | day | xref | contrib | source | volume | fpage | lpage | etal | pub-id | named-content | x">
+  <xsl:template match="abbrev | surname | given-names | email | label | year | month | day | xref | contrib | source | volume | fpage | lpage | etal | pub-id | named-content | funding-source | award-id | x">
     <span class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </span>
