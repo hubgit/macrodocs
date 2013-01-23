@@ -166,6 +166,7 @@ figure figcaption {
   -webkit-flex: 1 25rem;
   -moz-flex: 1 25rem;
   flex: 1 25rem;
+  padding: 0 10px;
 }
 
 figure > p {
