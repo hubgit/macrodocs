@@ -35,6 +35,7 @@ h2 {
 
 h3 {
 	font-size: 1.5rem;
+	letter-spacing: -1px;
 }
 
 h4 {
@@ -84,6 +85,8 @@ figcaption .heading,
 	margin: 0 0 1rem;
   padding: 0 !important;
   font-size: 1.2rem;
+  letter-spacing: -2px;
+  font-family: Lustria;
 }
 
 figcaption p,
