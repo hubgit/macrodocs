@@ -71,7 +71,7 @@ section section .table-wrap {
 
 figure .image-container {
   text-align: center;
-  margin-right: 2rem;
+  /*margin-right: 2rem;*/
 }
 
 figure img {
