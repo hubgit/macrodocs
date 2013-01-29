@@ -93,7 +93,7 @@ $(document).on("article.ready", function(event, article){
 							var heading = $("<h2/>", { text: "Related Articles" }).addClass("heading");
 							var section = $("<section/>", { id: "related-articles" }).append(heading).append(container);
 
-							article.find("footer").append(section);
+							article.after(section);
 						}
 					});
 				}

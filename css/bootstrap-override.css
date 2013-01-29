@@ -1,0 +1,5 @@
+.nav-tabs {
+	float:right;
+	text-transform: uppercase;
+	/*-webkit-transform:rotate(90deg);*/
+}

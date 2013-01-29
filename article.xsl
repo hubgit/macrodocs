@@ -101,9 +101,11 @@
     </main>
   </xsl:template>
 
+  <!-- back -->
   <xsl:template match="back">
     <footer class="{local-name()}">
-      <xsl:apply-templates select="node()|@*"/>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates select="ref-list"/>
     </footer>
   </xsl:template>
 
@@ -237,6 +239,36 @@
     <a class="{local-name()}" href="#{@rid}"><xsl:apply-templates select="node()|@*"/></a>
   </xsl:template>
 
+  <!-- cross-reference -->
+  <xsl:template match="xref[@ref-type='bibr']">
+    <xsl:variable name="rid" select="@rid"/>
+    <xsl:variable name="ref" select="/article/back/ref-list/ref[@id=$rid]"/>
+    <xsl:variable name="url">
+      <xsl:call-template name="reference-url">
+        <xsl:with-param name="ref" select="$ref"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <a class="{local-name()} bibr" href="{$url}" rel="tooltip" target="_new"><cite itemscope="itemscope" itemref="{@rid}"><xsl:apply-templates select="node()|@*"/></cite></a>
+  </xsl:template>
+
+  <!-- cross-referenced reference -->
+  <xsl:template name="reference-url">
+    <xsl:param name="ref"/>
+    <xsl:variable name="doi" select="$ref//pub-id[@pub-id-type='doi']"/>
+    <xsl:variable name="pmid" select="$ref//pub-id[@pub-id-type='pmid']"/>
+    <xsl:choose>
+      <xsl:when test="$doi">
+        <xsl:value-of select="concat('http://dx.doi.org/', $doi)"/>
+      </xsl:when>
+      <xsl:when test="$pmid">
+        <xsl:value-of select="concat('http://pubmed.gov/', $pmid)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat('#', @id)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <!-- figure -->
   <xsl:template match="fig">
     <figure class="{local-name()}">
@@ -303,7 +335,7 @@
 
   <!-- reference list item -->
   <xsl:template match="ref-list/ref">
-    <li class="{local-name()}">
+    <li class="{local-name()}" itemid="{@id}">
       <xsl:apply-templates select="mixed-citation | citation | element-citation|@*"/>
     </li>
   </xsl:template>
@@ -351,10 +383,13 @@
     </div>
   </xsl:template>
 
-  <!-- attributes (direct copy) -->
-  <xsl:template match="@*">
+  <!-- id attribute (direct copy) -->
+  <xsl:template match="@id">
     <xsl:copy-of select="."/>
   </xsl:template>
+
+  <!-- attributes (ignore) -->
+  <xsl:template match="@*"></xsl:template>
 
   <!-- ignore namespaced attributes -->
   <xsl:template match="@*[namespace-uri()]"></xsl:template>

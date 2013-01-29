@@ -41,3 +41,11 @@
 .ref .person-group .etal:after {
   content: "";
 }
+
+.xref.bibr {
+  opacity: 0.5;
+}
+
+.xref.bibr:hover {
+  opacity: 1.0;
+}

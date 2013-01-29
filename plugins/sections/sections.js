@@ -76,23 +76,70 @@ $(document).on("article.loaded", function(event, article){
 	});
 
 	if (sections["methods"] && sections["results"]) {
-		sections["results"].after(sections["methods"]);
+		//sections["results"].after(sections["methods"]);
 	}
 
-	var collapsedSections = ["methods", "references", "supporting", "acknowledgements", "acknowledgments"];
+	article.addClass("root");
+	article.find("main,footer").addClass("root");
 
-	$.each(collapsedSections, function(index, item) {
-		if (typeof sections[item] !== "undefined" && sections[item]) {
-			sections[item].addClass("collapsed");
-		}
-	});
+	if (sections["methods"]) {
+		article.find("main").after(sections["methods"]);
+	}
 
-	article.find("section.collapsed").each(function() {
-		$("<div/>", { html: "show section&hellip;" }).addClass("show").appendTo(this);
-		$(this).closest("main,footer").append(this);
-	});
+	var collapseSections = function() {
+		var collapsedSections = ["methods", "references", "supporting", "acknowledgements", "acknowledgments"];
 
-	article.on("click", ".show", function(event) {
-		$(this).closest("section").removeClass("collapsed");
-	});
+		$.each(collapsedSections, function(index, item) {
+			if (typeof sections[item] !== "undefined" && sections[item]) {
+				sections[item].addClass("collapsed");
+			}
+		});
+
+		article.find("section.collapsed").each(function() {
+			$("<div/>", { html: "show section&hellip;" }).addClass("show").appendTo(this);
+			$(this).closest("main,footer").append(this);
+		});
+
+		article.on("click", ".show", function(event) {
+			$(this).closest("section").removeClass("collapsed");
+		});
+	};
+
+	//collapseSections();
+
+	var addSectionTabs = function() {
+		var tabsContainer = article.find("nav");
+		var tabs = $("<ul/>").addClass("nav nav-tabs nav-stacked").prependTo(tabsContainer);
+
+		article.find("main").attr("id", "main").addClass("active");
+
+		article.addClass("tab-content");
+
+		article.find("footer").attr("id", "footer");
+
+		var sections = article.find("main, #methods, footer");
+
+		sections.addClass("tab-pane");
+
+		//article.find("section[id] > h2").each(function() {
+		sections.each(function() {
+			var node = $(this);
+			var heading = node.find("> h2");
+
+			node.addClass("tab-pane");
+
+			$("<a/>", { href: "#" + node.attr("id") })
+				.attr("data-toggle", "tab")
+				.text(heading.text() ? heading.text() : node.get(0).tagName)
+				.wrap("<li/>")
+				.parent()
+				.appendTo(tabs);
+		});
+
+		tabs.find("li:first").addClass("active");
+		tabs.find("a[href='#footer']").text("References");
+	};
+
+	addSectionTabs();
+
 });

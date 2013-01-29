@@ -66,7 +66,7 @@ $(function() {
 		var id = location.hash;
 		if (id) {
 			var targetNode = $(id);
-			targetNode.removeClass("collapsed");
+			//targetNode.removeClass("collapsed");
 
 			if (targetNode.length) {
 				window.setTimeout(function() {

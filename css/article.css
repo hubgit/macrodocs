@@ -24,13 +24,14 @@ h1 {
 }
 
 h2 {
-  font-weight: 800;
+  font-weight: 400;
 	background: #444;
 	color: #DDD8C5;
   font-size: 1.8rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
   line-height: 2;
+  text-transform: uppercase;
 }
 
 h3 {
@@ -132,7 +133,7 @@ p {
   margin-bottom: 1.5rem;
 }
 
-.body > section > section {
+.root > section > section {
   margin: 2rem;
   border: 1px solid transparent; /* enforce margins within */
   background: #F1F0E8;
@@ -142,12 +143,12 @@ p {
   position: relative;
 }
 
-.body > section > section h3 {
+.root > section > section h3 {
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-.body > section > section p {
+.root > section > section p {
   margin-left: 2rem;
   margin-right: 2rem;
 }
