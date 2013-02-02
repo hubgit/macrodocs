@@ -380,9 +380,11 @@ li p {
   padding-left: 0.5em !important;
 }
 
+/*
 tr:nth-of-type(even) td {
   background: #EEE;
 }
+*/
 
 a.xref[ref-type="table-fn"] {
   vertical-align: super;
