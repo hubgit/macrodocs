@@ -1,25 +1,29 @@
 .ref-list {
-  display: table;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
 .ref {
-  display: table-row;
   margin-bottom: 10px;
 }
 
-.ref > * {
-  display: table-cell;
-  padding: 0 0.5rem 0.5rem;
+.ref .year {
+  display: run-in;
+  font-weight: bold;
 }
 
-.ref .ref-publication {
-  white-space: nowrap;
-  max-width: 20em;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
+.ref .year:after {
+  content: " ";
+}
+
+.ref .article-title {
+  display: block;
+  font-weight: bold;
+}
+
+.ref .source {
+  display: block;
 }
 
 .ref .label {
@@ -42,10 +46,10 @@
   content: "";
 }
 
-.xref.bibr {
-  opacity: 0.5;
+.popover li {
+  list-style-type: none;
 }
 
-.xref.bibr:hover {
-  opacity: 1.0;
+.popover h3 {
+  letter-spacing: 0;
 }

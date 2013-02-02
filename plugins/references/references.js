@@ -48,26 +48,29 @@ $(document).on("article.ready", function(event, article){
 	};
 
 	/* add popover to references */
-	$(".xref[href^=#]")
+	$(".xref.bibr")
 		.filter(function() {
-			var id = $(this).attr("href").replace(/\./g, "\\.");
-			return $(id).hasClass("ref");
+			var id = $(this).data("rid").replace(/\./g, "\\.");
+			var node = $("#" + id);
+			return node.hasClass("ref");
 		})
-		.click(function() {
-			//$(".popover").remove();
-			return false;
+		.click(function(event) {
+			$(".popover").remove();
+			return event.metaKey; // allow the link to open if meta key is pressed
 		})
 		.popover({
 			html: true,
 			title: function() {
-				var id = $(this).attr("href").replace(/\./g, "\\.");
-				return $(id).find(".article-title").clone();
+				var id = $(this).data("rid").replace(/\./g, "\\.");
+				var node = $("#" + id);
+				return node.find(".article-title").clone();
 			},
 			trigger: "click",
 			placement: popoverPlacement,
 			content: function() {
-				var id = $(this).attr("href").replace(/\./g, "\\.");
-				return $(id).html();
+				var id = $(this).data("rid").replace(/\./g, "\\.");
+				var node = $("#" + id);
+				return node.clone();
 			}
 		});
 

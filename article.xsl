@@ -54,7 +54,7 @@
 
         <xsl:text> · </xsl:text>
 
-        <i>
+        <i itemprop="provider">
           <xsl:choose>
             <xsl:when test="journal-meta/journal-title-group">
               <xsl:value-of select="journal-meta/journal-title-group/journal-title"/>
@@ -236,7 +236,7 @@
 
   <!-- cross-reference -->
   <xsl:template match="xref">
-    <a class="{local-name()}" href="#{@rid}"><xsl:apply-templates select="node()|@*"/></a>
+    <a class="{local-name()}" href="#{@rid}" data-rid="{@rid}"><xsl:apply-templates select="node()|@*"/></a>
   </xsl:template>
 
   <!-- cross-reference -->
@@ -248,7 +248,7 @@
         <xsl:with-param name="ref" select="$ref"/>
       </xsl:call-template>
     </xsl:variable>
-    <a class="{local-name()} bibr" href="{$url}" rel="tooltip" target="_new"><cite itemscope="itemscope" itemref="{@rid}"><xsl:apply-templates select="node()|@*"/></cite></a>
+    <a class="{local-name()} bibr" href="{$url}" rel="tooltip" target="_new" data-rid="{@rid}"><cite itemscope="itemscope" itemref="{@rid}"><xsl:apply-templates select="node()|@*"/></cite></a>
   </xsl:template>
 
   <!-- cross-referenced reference -->
@@ -342,28 +342,24 @@
 
   <!-- mixed citation -->
   <xsl:template match="mixed-citation | citation | element-citation">
-    <div><xsl:apply-templates select="../label"/></div>
+    <xsl:apply-templates select="../label"/>
 
-    <div><xsl:apply-templates select="year"/></div>
+    <xsl:apply-templates select="article-title"/>
 
-    <div class="ref-work">
-      <div><xsl:apply-templates select="article-title"/></div>
+    <xsl:choose>
+      <xsl:when test="person-group">
+        <xsl:apply-templates select="person-group"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <div class="person-group" data-ignore-class="">
+          <xsl:apply-templates select="name"/>
+        </div>
+      </xsl:otherwise>
+    </xsl:choose>
 
-      <xsl:choose>
-        <xsl:when test="person-group">
-          <xsl:apply-templates select="person-group"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <div class="person-group" data-ignore-class="">
-            <xsl:apply-templates select="name"/>
-          </div>
-        </xsl:otherwise>
-      </xsl:choose>
-    </div>
+    <xsl:apply-templates select="year"/>
 
-    <div class="ref-publication">
-      <xsl:apply-templates select="source"/>
-    </div>
+    <xsl:apply-templates select="source"/>
   </xsl:template>
 
   <!-- article title in references -->

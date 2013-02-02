@@ -404,3 +404,7 @@ section.collapsed .show {
 nav {
   margin-left: 3em;
 }
+
+header .provider {
+  white-space: nowrap;
+}
