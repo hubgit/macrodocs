@@ -78,29 +78,9 @@ $(document).on("article.loaded", function(event, article){
 		sections[heading] = section;
 	});
 
-	//article.addClass("root");
-	//article.find("main,footer").addClass("root");
-
-	var collapseSections = function() {
-		var collapsedSections = ["methods", "references", "supporting", "acknowledgements", "acknowledgments"];
-
-		$.each(collapsedSections, function(index, item) {
-			if (typeof sections[item] !== "undefined" && sections[item]) {
-				sections[item].addClass("collapsed");
-			}
-		});
-
-		article.find("section.collapsed").each(function() {
-			$("<div/>", { html: "show section&hellip;" }).addClass("show").appendTo(this);
-			$(this).closest("main,footer").append(this);
-		});
-
-		article.on("click", ".show", function(event) {
-			$(this).closest("section").removeClass("collapsed");
-		});
-	};
-
-	//collapseSections();
+	var scrollToTop = function() {
+		$("html, body").animate({ scrollTop: 0 }, "fast");
+	}
 
 	var addSectionTabs = function() {
 		var navbar = $('<div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><ul class="nav"></ul></div></div>');
@@ -136,7 +116,8 @@ $(document).on("article.loaded", function(event, article){
 				.text(node.data("tab-heading"))
 				.wrap("<li/>")
 				.parent()
-				.appendTo(tabs);
+				.appendTo(tabs)
+				.click(scrollToTop);
 		});
 
 		tabs.find("li:first").addClass("active");

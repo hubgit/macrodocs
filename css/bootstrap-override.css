@@ -5,4 +5,22 @@
 
 .navbar .nav {
 	margin: 0 auto;
+	float: right;
+}
+
+.navbar-fixed-bottom .navbar-inner {
+	min-height: 0;
+	background: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border: none;
+}
+
+.navbar .nav > li > a {
+	padding: 5px 10px;
+	background: #ddd;
+}
+
+.navbar .nav > li > a:hover {
+	background: #fff;
 }
