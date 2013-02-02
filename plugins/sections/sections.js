@@ -75,16 +75,8 @@ $(document).on("article.loaded", function(event, article){
 		sections[heading] = section;
 	});
 
-	if (sections["methods"] && sections["results"]) {
-		//sections["results"].after(sections["methods"]);
-	}
-
-	article.addClass("root");
-	article.find("main,footer").addClass("root");
-
-	if (sections["methods"]) {
-		article.find("main").after(sections["methods"]);
-	}
+	//article.addClass("root");
+	//article.find("main,footer").addClass("root");
 
 	var collapseSections = function() {
 		var collapsedSections = ["methods", "references", "supporting", "acknowledgements", "acknowledgments"];
@@ -112,16 +104,26 @@ $(document).on("article.loaded", function(event, article){
 		var tabs = navbar.find(".nav");
 
 		article.addClass("tab-content");
-		article.find("main").attr("id", "main").addClass("active");
-		article.find("footer").attr("id", "footer");
 
-		var sections = article.find("main, #methods, footer");
-		sections.addClass("tab-pane");
+		var main = article.find("main");
+		var footer = article.find("footer");
+
+		main.attr("id", "main").addClass("active");
+
+		article.find("#methods, #references").each(function() {
+			var node = $(this);
+			node.addClass("pseudo-main")
+			node.insertBefore(footer);
+		});
+
+		var sections = article.find("main, #methods, #references");
 
 		//article.find("section[id] > h2").each(function() {
 		sections.each(function() {
 			var node = $(this);
-			var heading = node.find("> h2");
+			node.addClass("tab-pane");
+
+			var heading = node.find("h2:first");
 
 			node.addClass("tab-pane");
 
@@ -134,7 +136,6 @@ $(document).on("article.loaded", function(event, article){
 		});
 
 		tabs.find("li:first").addClass("active");
-		tabs.find("a[href='#footer']").text("References");
 
 		navbar.appendTo("body");
 	};

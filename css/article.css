@@ -133,7 +133,8 @@ p {
   margin-bottom: 1.5rem;
 }
 
-.root > section > section {
+main > section > section,
+.pseudo-main > section {
   margin: 2rem;
   border: 1px solid transparent; /* enforce margins within */
   background: #F1F0E8;
@@ -143,12 +144,14 @@ p {
   position: relative;
 }
 
-.root > section > section h3 {
+main > section > section h3,
+.pseudo-main > section h3 {
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-.root > section > section p {
+main > section > section p,
+.pseudo-main > section p {
   margin-left: 2rem;
   margin-right: 2rem;
 }

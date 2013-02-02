@@ -1,5 +1,5 @@
 .navbar {
-	text-transform: uppercase;
+	font-variant: small-caps;
 	/*-webkit-transform:rotate(90deg);*/
 }
 

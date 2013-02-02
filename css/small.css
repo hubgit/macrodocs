@@ -65,24 +65,28 @@ section p > figure, section p > .table-wrap {
   padding-right: 1rem !important;
 }
 
-.body > section > section {
+main > section > section,
+.pseudo-main > section {
 	margin: 1rem 0;
 	/*border-radius: 0;*/
 }
 
-.body > section > section h3 {
+main > section > section h3,
+.pseudo-main > section h3 {
 	padding-left: 1rem;
 	padding-right: 1rem;
 	margin: 1rem 0;
 }
 
-.body > section > section p {
+main > section > section p,
+.pseudo-main > section p {
 	margin-left: 1rem;
 	margin-right: 1rem;
 	padding: 0;
 }
 
-.body > section > section figcaption p {
+main > section > section figcaption p,
+.pseudo-main > section figcaption p {
 	margin-left: 0;
 	margin-right: 0;
 }
