@@ -111,12 +111,17 @@ $(document).on("article.loaded", function(event, article){
 		var main = article.find("main");
 		var footer = article.find("footer");
 
-		main.attr("id", "main").addClass("active");
+		main
+			.attr("id", "main")
+			.addClass("active")
+			.data("tab-heading", "Main");
 
 		article.find("#methods, #references").each(function() {
 			var node = $(this);
+			
 			node.addClass("pseudo-main")
-			node.insertBefore(footer);
+				.data("tab-heading", node.find("h2:first").text())
+				.insertBefore(footer);
 		});
 
 		var sections = article.find("main, #methods, #references");
@@ -126,13 +131,9 @@ $(document).on("article.loaded", function(event, article){
 			var node = $(this);
 			node.addClass("tab-pane");
 
-			var heading = node.find("h2:first");
-
-			node.addClass("tab-pane");
-
 			$("<a/>", { href: "#" + node.attr("id") })
 				.attr("data-toggle", "tab")
-				.text(heading.text() ? heading.text() : node.get(0).tagName)
+				.text(node.data("tab-heading"))
 				.wrap("<li/>")
 				.parent()
 				.appendTo(tabs);
