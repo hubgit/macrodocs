@@ -317,6 +317,8 @@ p > .row {
 table {
   border: 1px solid #AAA;
   margin: 1rem 0;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  font-weight: 200;
 }
 
 thead {
