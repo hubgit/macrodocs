@@ -12,6 +12,7 @@ body,h1,h2,h3,h4,h5,h6,article,aside,dialog,figure,footer,header,hgroup,nav,sect
 body {
 	color: #333;
 	line-height: 1.5;
-	background-color: #DDD8C5;
+	/*background-color: #DDD8C5;*/
+  background-color: rgb(235, 232, 223);
   padding-bottom: 4rem;
 }
