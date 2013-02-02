@@ -108,17 +108,14 @@ $(document).on("article.loaded", function(event, article){
 	//collapseSections();
 
 	var addSectionTabs = function() {
-		var tabsContainer = article.find("nav");
-		var tabs = $("<ul/>").addClass("nav nav-tabs nav-stacked").prependTo(tabsContainer);
-
-		article.find("main").attr("id", "main").addClass("active");
+		var navbar = $('<div class="navbar navbar-fixed-bottom"><div class="navbar-inner"><ul class="nav"></ul></div></div>');
+		var tabs = navbar.find(".nav");
 
 		article.addClass("tab-content");
-
+		article.find("main").attr("id", "main").addClass("active");
 		article.find("footer").attr("id", "footer");
 
 		var sections = article.find("main, #methods, footer");
-
 		sections.addClass("tab-pane");
 
 		//article.find("section[id] > h2").each(function() {
@@ -138,8 +135,9 @@ $(document).on("article.loaded", function(event, article){
 
 		tabs.find("li:first").addClass("active");
 		tabs.find("a[href='#footer']").text("References");
+
+		navbar.appendTo("body");
 	};
 
 	addSectionTabs();
-
 });

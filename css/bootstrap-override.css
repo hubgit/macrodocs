@@ -1,5 +1,8 @@
-.nav-tabs {
-	float:right;
+.navbar {
 	text-transform: uppercase;
 	/*-webkit-transform:rotate(90deg);*/
+}
+
+.navbar .nav {
+	margin: 0 auto;
 }

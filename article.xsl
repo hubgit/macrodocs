@@ -92,11 +92,11 @@
 -->
 
   <xsl:template match="body">
-    <nav>
-      <!--<xsl:call-template name="toc"/>-->
-    </nav>
-
     <main class="{local-name()}" lang="en">
+      <nav>
+        <!--<xsl:call-template name="toc"/>-->
+      </nav>
+      
       <xsl:apply-templates select="node()|@*"/>
     </main>
   </xsl:template>
