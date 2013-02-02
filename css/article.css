@@ -125,7 +125,8 @@ footer > div h2 {
 }
 
 a {
-  color: #15C;
+  /* color: #15C; */
+  color: rgb(136, 115, 70);
 }
 
 p {
