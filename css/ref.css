@@ -24,14 +24,14 @@
 
 .ref .source {
   display: block;
+  font-style: italic;
 }
 
 .ref .label {
-  text-align: right;
+  display: none;
 }
 
 .ref .source  {
-  font-style: italic;
 }
 
 .ref .pub-id {

@@ -323,6 +323,30 @@
     </section>
   </xsl:template>
 
+  <!-- definition list -->
+  <xsl:template match="def-list">
+    <dl class="{local-name()}">
+      <xsl:apply-templates match="node()|@*"/>
+    </dl>
+  </xsl:template>
+
+  <xsl:template match="def-item">
+    <xsl:apply-templates match="term"/>
+    <xsl:apply-templates match="def"/>
+  </xsl:template>
+
+  <xsl:template match="def-item/term">
+    <dt class="{local-name()}">
+      <xsl:apply-templates match="node()|@*"/>
+    </dt>
+  </xsl:template>
+
+  <xsl:template match="def-item/def">
+    <dd class="{local-name()}">
+      <xsl:apply-templates match="node()|@*"/>
+    </dd>
+  </xsl:template>
+
   <!-- reference list -->
   <xsl:template match="ref-list">
     <xsl:apply-templates select="title|@*"/>

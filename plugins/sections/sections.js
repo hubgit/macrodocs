@@ -35,7 +35,10 @@ $(document).on("article.loaded", function(event, article){
 	article.find("main,footer").find(":header").each(function() {
 		var node = $(this);
 
-		var heading = $.trim(node.text().toLowerCase().replace(/^[^a-z]+/, "").replace(/\.$/, ""));
+		var text = node.text().replace(/^[^a-z]+/i, "");
+		node.text(text);
+
+		var heading = $.trim(text.toLowerCase().replace(/\.$/, ""));
 
 		//node.text(heading.toProperCase().replace(/[\s-\/](A|And|Of|The|In|Is|For)\b/g, function(text) { return text.toLowerCase() }));
 

@@ -411,3 +411,16 @@ nav {
 header .provider {
   white-space: nowrap;
 }
+
+dl {
+  margin: 0 1rem;
+}
+
+dt {
+  display: run-in;
+  font-weight: bold;
+}
+
+dt:after {
+  content: " ";
+}

@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-family: "Lustria", serif;
+	font-family: "Lustria", "Georgia", serif;
 }
 
 h2 {
@@ -16,7 +16,8 @@ h2 {
 }
 
 section > h3 {
-	font-family: "Lustria", serif;
+	font-family: "Lustria", "Georgia", serif;
+	font-weight: normal;
 }
 
 main p {
@@ -35,7 +36,7 @@ figure p,
 }
 
 #introduction > p:first-of-type:first-letter {
-  font-family: "Lustria", sans-serif;
+  font-family: "Lustria", "Georgia", serif;
   float: left;
   font-size: 4rem;
   line-height: 1em;
