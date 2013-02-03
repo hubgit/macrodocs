@@ -98,9 +98,14 @@ $(document).on("article.loaded", function(event, article){
 
 		article.find("#methods, #references").each(function() {
 			var node = $(this);
+			var text = node.find("h2:first").text();
+			
+			if (text.match(/methods/i)) {
+				text = "Methods";
+			}
 			
 			node.addClass("pseudo-main")
-				.data("tab-heading", node.find("h2:first").text())
+				.data("tab-heading", text)
 				.insertBefore(footer);
 		});
 
