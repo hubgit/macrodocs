@@ -347,6 +347,7 @@ td {
   border: 1px solid #CCC;
 }
 
+table *[align=left],
 table *[align=left] td {
   text-align: left;
 }
