@@ -404,7 +404,7 @@
   </xsl:template>
 
   <!-- id attribute (direct copy) -->
-  <xsl:template match="@id | @colspan | @align">
+  <xsl:template match="@id | @colspan | @rowspan | @align">
     <xsl:copy-of select="."/>
   </xsl:template>
 
