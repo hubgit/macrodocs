@@ -352,6 +352,17 @@ table *[align=left] td {
   text-align: left;
 }
 
+table a.xref {
+  vertical-align: super;
+  font-size: smaller;
+  line-height: 0;
+}
+
+.table-wrap-foot .fn .label {
+  vertical-align: super;
+  font-size: smaller;
+  line-height: 0;
+}
 
 ul, ol {
   margin:  0 0 1rem 4rem;
