@@ -248,7 +248,7 @@
         <xsl:with-param name="ref" select="$ref"/>
       </xsl:call-template>
     </xsl:variable>
-    <a class="{local-name()} bibr" href="{$url}" rel="tooltip" target="_new" data-rid="{@rid}"><cite itemscope="itemscope" itemref="{@rid}"><xsl:apply-templates select="node()|@*"/></cite></a>
+    <a class="{local-name()} bibr" href="{$url}" rel="tooltip" data-rid="{@rid}"><cite itemscope="itemscope" itemref="{@rid}"><xsl:apply-templates select="node()|@*"/></cite></a>
   </xsl:template>
 
   <!-- cross-referenced reference -->
