@@ -7,15 +7,15 @@ $(document).on("article.loaded", function(event, article){
 		var node = $(this);
 		var id = node.attr("id");
 
-		var link = article.find("a.xref").filter(function() {
-			return $(this).attr("rid") === id;
+		var links = article.find("a.xref").filter(function() {
+			return $(this).data("rid") === id;
 		});
 
-		if (!link.length) {
+		if (!links.length) {
 			return;
 		}
 
-		var section = link.eq(0).closest("section");
+		var section = links.eq(0).closest("section");
 
 		if (!node.closest("section").is(section)) {
 			section.append(node);
