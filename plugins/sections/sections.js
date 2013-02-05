@@ -102,6 +102,8 @@ $(document).on("article.loaded", function(event, article){
 			
 			if (text.match(/methods/i)) {
 				text = "Methods";
+			} else if (text.match(/references/i)) {
+				text = "References";
 			}
 			
 			node.addClass("pseudo-main")
@@ -131,4 +133,16 @@ $(document).on("article.loaded", function(event, article){
 	};
 
 	addSectionTabs();
+});
+
+$(document).on("article.ready", function(event, article){
+	article = $(article);
+	
+	var applyBalanceText = function() {
+		article.find("h1").balanceText();
+	}
+
+	applyBalanceText();
+
+	$(window).resize(applyBalanceText);
 });

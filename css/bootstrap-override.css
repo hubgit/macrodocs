@@ -6,6 +6,9 @@
 .navbar .nav {
 	margin: 0 auto;
 	float: right;
+	border: 1px solid #ddd;
+	background: #eee;
+	border-radius: 10px 0 0 0;
 }
 
 .navbar-fixed-bottom .navbar-inner {
@@ -18,7 +21,14 @@
 
 .navbar .nav > li > a {
 	padding: 5px 10px;
-	background: #ddd;
+	background: none;
+}
+
+.navbar .nav > li:first-of-type > a {
+	border-radius: 10px 0 0 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border: none;
 }
 
 .navbar .nav > li > a:hover {
