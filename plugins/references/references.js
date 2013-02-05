@@ -53,11 +53,11 @@ $(document).on("article.ready", function(event, article){
 			var id = $(this).data("rid").replace(/\./g, "\\.");
 			var node = $("#" + id);
 			return node.hasClass("ref");
-		})
+		})/*
 		.click(function(event) {
 			$(".popover").remove();
 			return event.metaKey; // allow the link to open if meta key is pressed
-		})
+		})*/
 		.popover({
 			html: true,
 			title: function() {
