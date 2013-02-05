@@ -65,7 +65,7 @@ $(document).on("article.ready", function(event, article){
 				var node = $("#" + id);
 				return node.find(".article-title").clone();
 			},
-			trigger: "click",
+			trigger: "hover",
 			placement: popoverPlacement,
 			content: function() {
 				var id = $(this).data("rid").replace(/\./g, "\\.");
