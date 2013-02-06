@@ -66,7 +66,7 @@ $(document).on("article.ready", function(event, article){
 				return getRefNode(this).find(".article-title").clone();
 			},
 			content: function() {
-				return nodegetRefNode(this).clone();
+				return getRefNode(this).clone();
 			}
 		});
 
