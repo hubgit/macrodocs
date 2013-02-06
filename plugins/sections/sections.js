@@ -158,7 +158,7 @@ $(document).on("article.loaded", function(event, article){
 					url: url,
 					dataType: "json",
 					success: function(data) {
-						var url = "http://www.altmetric.com/details.php?domain=" + window.location.domain + "&citation_id=" + data.altmetric_id;
+						var url = "http://www.altmetric.com/details.php?domain=" + window.location.host + "&citation_id=" + data.altmetric_id;
 						var style = "display: inline-block; background-image: url(https://d1uo4w7k31k5mn.cloudfront.net/v2/" + Math.ceil(data.score) + ".png); width: 88px; height: 18px;";
 
 						$("<a/>", { href: url, style: style, target: "_new" }).appendTo(node);
