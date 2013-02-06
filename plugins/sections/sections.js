@@ -129,6 +129,44 @@ $(document).on("article.loaded", function(event, article){
 
 		tabs.find("li:first").addClass("active");
 
+		/* add altmetric badges when the reference section is shown */
+		var altmetricLoaded = false;
+		tabs.find("a[href='#references']").on("click", function() {
+			if (altmetricLoaded) {
+				return;
+			}
+
+			altmetricLoaded = true;
+
+			$(".altmetric-embed").each(function() {
+				var node = $(this);
+				var doi = node.data("doi");
+				var pmid = node.data("pmid");
+				var url;
+
+				if (doi) {
+					url = "http://api.altmetric.com/v1/doi/" + doi;
+				} else if (pmid) {
+					url = "http://api.altmetric.com/v1/pmid/" + pmid;
+				}
+
+				if (!url) {
+					return true; // continue
+				}
+
+				$.ajax({
+					url: url,
+					dataType: "json",
+					success: function(data) {
+						var url = "http://www.altmetric.com/details.php?domain=" + window.location.domain + "&citation_id=" + data.altmetric_id;
+						var style = "display: inline-block; background-image: url(https://d1uo4w7k31k5mn.cloudfront.net/v2/" + Math.ceil(data.score) + ".png); width: 88px; height: 18px;";
+
+						$("<a/>", { href: url, style: style, target: "_new" }).appendTo(node);
+					}
+				})
+			});
+		});
+
 		navbar.appendTo("body");
 	};
 

@@ -384,11 +384,43 @@
     <xsl:apply-templates select="year"/>
 
     <xsl:apply-templates select="source"/>
+
+    <xsl:call-template name="altmetric"/>
+  </xsl:template>
+
+  <xsl:template name="altmetric">
+    <xsl:variable name="doi" select="pub-id[@pub-id-type='doi']"/>
+    <xsl:variable name="pmid" select="pub-id[@pub-id-type='pmid']"/>
+    <xsl:choose>
+      <xsl:when test="$doi">
+        <div class="altmetric-embed" data-badge-popover="left" data-doi="{$doi}"></div>
+      </xsl:when>
+      <xsl:when test="$pmid">
+        <div class="altmetric-embed" data-badge-popover="left" data-pmid="{$pmid}"></div>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <!-- article title in references -->
   <xsl:template match="mixed-citation/article-title|citation/article-title|element-citation/article-title">
-    <a class="{local-name()}" target="_blank" href="http://scholar.google.com/scholar?q=intitle:&quot;{.}&quot;"><xsl:apply-templates select="node()|@*"/></a>
+    <xsl:variable name="doi" select="../pub-id[@pub-id-type='doi']"/>
+    <xsl:variable name="pmid" select="../pub-id[@pub-id-type='pmid']"/>
+    <xsl:variable name="url">
+      <xsl:choose>
+        <xsl:when test="$doi">
+          <xsl:value-of select="concat('http://dx.doi.org/', $doi)"/>
+        </xsl:when>
+        <xsl:when test="$pmid">
+          <xsl:value-of select="concat('http://pubmed.gov/', $pmid)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="concat('http://scholar.google.com/scholar?q=intitle:&quot;', ., '&quot;')"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <a class="{local-name()}" target="_blank" href="{$url}">
+      <xsl:apply-templates select="node()|@*"/>
+    </a>
   </xsl:template>
 
   <!-- "et al" -->

@@ -47,36 +47,33 @@ $(document).on("article.ready", function(event, article){
 		return "bottom";
 	};
 
+	var getRefNode = function(node) {
+		var id = $(node).data("rid").replace(/\./g, "\\.");
+
+		return $("#" + id);
+	};
+
 	/* add popover to references */
 	$(".xref.bibr")
 		.filter(function() {
-			var id = $(this).data("rid").replace(/\./g, "\\.");
-			var node = $("#" + id);
-			return node.hasClass("ref");
-		})/*
-		.click(function(event) {
-			$(".popover").remove();
-			return event.metaKey; // allow the link to open if meta key is pressed
-		})*/
+			return getRefNode(this).hasClass("ref");
+		})
 		.popover({
 			html: true,
-			title: function() {
-				var id = $(this).data("rid").replace(/\./g, "\\.");
-				var node = $("#" + id);
-				return node.find(".article-title").clone();
-			},
 			trigger: "hover",
 			placement: popoverPlacement,
+			title: function() {
+				return getRefNode(this).find(".article-title").clone();
+			},
 			content: function() {
-				var id = $(this).data("rid").replace(/\./g, "\\.");
-				var node = $("#" + id);
-				return node.clone();
+				return nodegetRefNode(this).clone();
 			}
 		});
 
-	$("<div/>", { id: "links" }).hide().appendTo("body");
+	//$("<div/>", { id: "links" }).hide().appendTo("body");
 
 	/* build reference sources */
+	/*
 	article.find(".label").each(function() {
 		var node = $(this);
 
@@ -99,8 +96,10 @@ $(document).on("article.ready", function(event, article){
 
 		node.data({ links: links, id: id });
 	});
+	*/
 
 	/* show reference sources when clicked */
+	/*
 	article.on("click", ".badge", function(event) {
 		var node = $(this);
 		var links = $("#links");
@@ -118,10 +117,25 @@ $(document).on("article.ready", function(event, article){
 		.css({ left: position.left + node.width() + 10, top: position.top - 6 })
 		.show();
 	});
+	*/
 
 	var refList = article.find(".ref-list");
 
 	refList.find(".ref").sort(function(a, b) {
-		return $(".year", b).text() - $(".year", a).text();
-	}).appendTo(refList);
+		// http://my.opera.com/GreyWyvern/blog/show.dml/1671288#comment58061082
+	    aa = $(".year", a).text().split(/(\d+)/);
+	    bb = $(".year", b).text().split(/(\d+)/);
+
+	    for(var x = 0; x < Math.max(aa.length, bb.length); x++) {
+	      if(aa[x] != bb[x]) {
+	        var cmp1 = (isNaN(parseInt(aa[x],10)))? aa[x] : parseInt(aa[x],10);
+	        var cmp2 = (isNaN(parseInt(bb[x],10)))? bb[x] : parseInt(bb[x],10);
+	        if(cmp1 == undefined || cmp2 == undefined)
+	          return aa.length - bb.length;
+	        else
+	          return (cmp1 > cmp2) ? -1 : 1;
+	      }
+	    }
+	    return 0;
+  }).appendTo(refList);
 });
