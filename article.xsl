@@ -96,7 +96,7 @@
       <nav>
         <!--<xsl:call-template name="toc"/>-->
       </nav>
-      
+
       <xsl:apply-templates select="node()|@*"/>
     </main>
   </xsl:template>
@@ -326,24 +326,24 @@
   <!-- definition list -->
   <xsl:template match="def-list">
     <dl class="{local-name()}">
-      <xsl:apply-templates match="node()|@*"/>
+      <xsl:apply-templates select="node()|@*"/>
     </dl>
   </xsl:template>
 
   <xsl:template match="def-item">
-    <xsl:apply-templates match="term"/>
-    <xsl:apply-templates match="def"/>
+    <xsl:apply-templates select="term"/>
+    <xsl:apply-templates select="def"/>
   </xsl:template>
 
   <xsl:template match="def-item/term">
     <dt class="{local-name()}">
-      <xsl:apply-templates match="node()|@*"/>
+      <xsl:apply-templates select="node()|@*"/>
     </dt>
   </xsl:template>
 
   <xsl:template match="def-item/def">
     <dd class="{local-name()}">
-      <xsl:apply-templates match="node()|@*"/>
+      <xsl:apply-templates select="node()|@*"/>
     </dd>
   </xsl:template>
 
