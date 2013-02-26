@@ -176,7 +176,7 @@
   </xsl:template>
 
   <!-- style elements -->
-  <xsl:template match="italic | bold | sc | strike | sub | sup | underline | inline-formula">
+  <xsl:template match="sc | strike | inline-formula">
     <span class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </span>
@@ -339,6 +339,13 @@
     </a>
   </xsl:template>
 
+  <!-- ordered list -->
+  <xsl:template match="ordered-list">
+    <ol class="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+    </ol>
+  </xsl:template>
+
   <!-- unordered list -->
   <xsl:template match="list">
     <ul class="{local-name()}">
@@ -376,6 +383,41 @@
     <dd class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </dd>
+  </xsl:template>
+
+  <!-- formatting -->
+  <xsl:template match="italic">
+      <i>
+          <xsl:apply-templates select="node()|@*"/>
+      </i>
+  </xsl:template>
+
+  <xsl:template match="bold">
+      <b>
+          <xsl:apply-templates select="node()|@*"/>
+      </b>
+  </xsl:template>
+
+  <xsl:template match="sub">
+      <sub>
+          <xsl:apply-templates select="node()|@*"/>
+      </sub>
+  </xsl:template>
+
+  <xsl:template match="sup">
+      <sup>
+          <xsl:apply-templates select="node()|@*"/>
+      </sup>
+  </xsl:template>
+
+  <xsl:template match="underline">
+      <u>
+          <xsl:apply-templates select="node()|@*"/>
+      </u>
+  </xsl:template>
+
+  <xsl:template match="break">
+      <br/>
   </xsl:template>
 
   <!-- reference list -->
