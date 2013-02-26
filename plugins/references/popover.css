@@ -1,6 +1,6 @@
 .popover {
 	font-size: 80%;
-	width: 400px;
+	max-width: 600px;
 }
 
 .popover-content .label,
