@@ -39,7 +39,7 @@
 
         <xsl:variable name="date" select="article-meta/pub-date[@pub-type=$datetype]"/>
 
-        <a>
+        <a rel="canonical">
           <xsl:attribute name="href">
             <xsl:text>http://dx.doi.org/</xsl:text>
             <xsl:value-of select="article-meta/article-id[@pub-id-type='doi']"/>
