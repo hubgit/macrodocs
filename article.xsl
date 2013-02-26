@@ -176,14 +176,14 @@
   </xsl:template>
 
   <!-- style elements -->
-  <xsl:template match="sc | strike | inline-formula">
+  <xsl:template match="sc | strike | monospace | overline | roman | sans-serif">
     <span class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </span>
   </xsl:template>
 
   <!-- inline elements -->
-  <xsl:template match="abbrev | surname | given-names | email | label | year | month | day | xref | contrib | source | volume | fpage | lpage | etal | pub-id | named-content | funding-source | award-id | x">
+  <xsl:template match="surname | given-names | email | label | year | month | day | contrib | source | volume | fpage | lpage | etal | pub-id | named-content | funding-source | award-id | inline-formula | x">
     <span class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </span>
@@ -194,6 +194,12 @@
     <xsl:element name="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="abbrev">
+    <abbr class="{local-name">
+      <xsl:apply-templates select="node()|@*"/>
+    </abbr>
   </xsl:template>
 
   <!-- sections -->
@@ -416,8 +422,38 @@
       </u>
   </xsl:template>
 
+  <xsl:template match="preformat[@preformat-type='code']">
+      <pre>
+        <code>
+          <xsl:apply-templates select="node()|@*"/>
+        </code>
+      </pre>
+  </xsl:template>
+
+  <xsl:template match="preformat">
+      <pre>
+          <xsl:apply-templates select="node()|@*"/>
+      </pre>
+  </xsl:template>
+
   <xsl:template match="break">
       <br/>
+  </xsl:template>
+
+  <xsl:template match="hr">
+      <hr/>
+  </xsl:template>
+
+  <xsl:template match="boxed-text">
+    <aside class="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+    </aside>
+  </xsl:template>
+
+  <xsl:template match="disp-quote">
+    <blockquote class="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+    </blockquote>
   </xsl:template>
 
   <!-- reference list -->
@@ -544,6 +580,13 @@
   <!-- id attribute (direct copy) -->
   <xsl:template match="@id | @colspan | @rowspan | @align">
     <xsl:copy-of select="."/>
+  </xsl:template>
+
+  <!-- abbrev/@alt -> abbr/@title -->
+  <xsl:template match="abbrev/@alt">
+    <xsl:attribute name="title">
+      <xsl:value-of select="."/>
+    </xsl:attribute>
   </xsl:template>
 
   <!-- attributes (ignore) -->
