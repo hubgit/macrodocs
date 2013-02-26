@@ -161,8 +161,16 @@
 
   <!-- name -->
   <xsl:template match="name">
+    <xsl:param name="itemprop"/>
+
     <xsl:call-template name="comma-separator"/>
+
     <span class="{local-name()}">
+      <xsl:if test="string-length($itemprop)">
+        <xsl:attribute name="itemprop">
+          <xsl:value-of select="$itemprop"/>
+        </xsl:attribute>
+      </xsl:if>
       <xsl:call-template name="name"/>
     </span>
   </xsl:template>
@@ -249,7 +257,7 @@
         <xsl:with-param name="ref" select="$ref"/>
       </xsl:call-template>
     </xsl:variable>
-    <a class="{local-name()} bibr" href="{$url}" rel="tooltip" data-rid="{@rid}"><cite itemscope="itemscope" itemref="{@rid}"><xsl:apply-templates select="node()|@*"/></cite></a>
+    <a class="{local-name()} bibr" href="{$url}" rel="tooltip" data-rid="{@rid}"><xsl:apply-templates select="node()|@*"/></a>
   </xsl:template>
 
   <!-- cross-referenced reference -->
@@ -360,7 +368,18 @@
 
   <!-- reference list item -->
   <xsl:template match="ref-list/ref">
-    <li class="{local-name()}" itemid="{@id}">
+    <li class="{local-name()}" id="{@id}" itemscope="itemscope" itemprop="citation">
+      <xsl:variable name="type" select="*/@publication-type"/>
+
+      <xsl:choose>
+        <xsl:when test="$type = 'journal'">
+          <xsl:attribute name="itemtype">http://schema.org/ScholarlyArticle</xsl:attribute>
+        </xsl:when>
+        <xsl:when test="$type = 'book'">
+          <xsl:attribute name="itemtype">http://schema.org/Book</xsl:attribute>
+        </xsl:when>
+      </xsl:choose>
+
       <xsl:apply-templates select="mixed-citation | citation | element-citation|@*"/>
     </li>
   </xsl:template>
@@ -371,35 +390,26 @@
 
     <xsl:apply-templates select="article-title"/>
 
-    <xsl:choose>
-      <xsl:when test="person-group">
-        <xsl:apply-templates select="person-group"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <div class="person-group" data-ignore-class="">
-          <xsl:apply-templates select="name"/>
-        </div>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:if test="descendant::name">
+      <div class="person-group" data-ignore-class="">
+        <xsl:apply-templates select="descendant::name">
+          <xsl:with-param name="itemprop" select="'author'"/>
+        </xsl:apply-templates>
+      </div>
+    </xsl:if>
 
-    <xsl:apply-templates select="year"/>
+    <xsl:apply-templates select="year" mode="citation"/>
 
     <xsl:apply-templates select="source"/>
 
     <xsl:call-template name="altmetric"/>
   </xsl:template>
 
-  <xsl:template name="altmetric">
-    <xsl:variable name="doi" select="pub-id[@pub-id-type='doi']"/>
-    <xsl:variable name="pmid" select="pub-id[@pub-id-type='pmid']"/>
-    <xsl:choose>
-      <xsl:when test="$doi">
-        <div class="altmetric-embed" data-badge-popover="left" data-doi="{$doi}"></div>
-      </xsl:when>
-      <xsl:when test="$pmid">
-        <div class="altmetric-embed" data-badge-popover="left" data-pmid="{$pmid}"></div>
-      </xsl:when>
-    </xsl:choose>
+  <!-- citation year -->
+  <xsl:template match="year" mode="citation">
+    <span class="year" itemprop="datePublished">
+      <xsl:apply-templates/>
+    </span>
   </xsl:template>
 
   <!-- article title in references -->
@@ -419,15 +429,31 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <a class="{local-name()}" target="_blank" href="{$url}">
-      <xsl:apply-templates select="node()|@*"/>
-    </a>
+    <cite>
+      <a class="{local-name()}" target="_blank" href="{$url}" itemprop="url">
+        <xsl:apply-templates select="node()|@*"/>
+      </a>
+    </cite>
   </xsl:template>
 
   <!-- "et al" -->
   <xsl:template match="person-group/etal">
     <xsl:call-template name="comma-separator"/>
     <span class="{local-name()}">et al.</span>
+  </xsl:template>
+
+  <!-- altmetric -->
+  <xsl:template name="altmetric">
+    <xsl:variable name="doi" select="pub-id[@pub-id-type='doi']"/>
+    <xsl:variable name="pmid" select="pub-id[@pub-id-type='pmid']"/>
+    <xsl:choose>
+      <xsl:when test="$doi">
+        <div class="altmetric-embed" data-badge-popover="left" data-doi="{$doi}"></div>
+      </xsl:when>
+      <xsl:when test="$pmid">
+        <div class="altmetric-embed" data-badge-popover="left" data-pmid="{$pmid}"></div>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <!-- block elements -->
