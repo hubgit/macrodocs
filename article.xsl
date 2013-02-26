@@ -332,6 +332,28 @@
     </section>
   </xsl:template>
 
+  <!-- uri -->
+  <xsl:template match="uri">
+    <a class="{local-name()}" href="{@xlink:href}">
+      <xsl:apply-templates select="@*|node()"/>
+    </a>
+  </xsl:template>
+
+  <!-- unordered list -->
+  <xsl:template match="list">
+    <ul class="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+    </ul>
+  </xsl:template>
+
+  <xsl:template match="list-item">
+    <li class="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+    </li>
+  </xsl:template>
+
+  <xsl:template match="list/list-item/label"/>
+
   <!-- definition list -->
   <xsl:template match="def-list">
     <dl class="{local-name()}">
@@ -402,13 +424,22 @@
 
     <xsl:apply-templates select="source"/>
 
+    <xsl:apply-templates select="comment"/>
+
     <xsl:call-template name="altmetric"/>
   </xsl:template>
 
   <!-- citation year -->
   <xsl:template match="year" mode="citation">
     <span class="year" itemprop="datePublished">
-      <xsl:apply-templates/>
+      <xsl:choose>
+        <xsl:when test="@iso-8601-date">
+          <xsl:value-of select="@iso-8601-date"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates/>
+        </xsl:otherwise>
+      </xsl:choose>
     </span>
   </xsl:template>
 
@@ -416,6 +447,7 @@
   <xsl:template match="mixed-citation/article-title|citation/article-title|element-citation/article-title">
     <xsl:variable name="doi" select="../pub-id[@pub-id-type='doi']"/>
     <xsl:variable name="pmid" select="../pub-id[@pub-id-type='pmid']"/>
+
     <xsl:variable name="url">
       <xsl:choose>
         <xsl:when test="$doi">
@@ -425,10 +457,14 @@
           <xsl:value-of select="concat('http://pubmed.gov/', $pmid)"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="concat('http://scholar.google.com/scholar?q=intitle:&quot;', ., '&quot;')"/>
+          <xsl:variable name="author">
+            <xsl:value-of select="../descendant::name[1]/surname"/>
+          </xsl:variable>
+          <xsl:value-of select="concat('http://scholar.google.com/scholar?q=intitle:&quot;', ., '&quot;%20inauthor:&quot;', $author, '&quot;')"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
+
     <cite>
       <a class="{local-name()}" target="_blank" href="{$url}" itemprop="url">
         <xsl:apply-templates select="node()|@*"/>
