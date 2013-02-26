@@ -138,5 +138,8 @@ $(function() {
 	} else if (data.gist) {
 		app.source = "gist";
 		fetchAndTransform(data.gist);
+	} else if (data.url) {
+		app.source = "url";
+		fetchAndTransform(data.url);
 	}
 });
