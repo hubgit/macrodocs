@@ -145,7 +145,8 @@
   <!-- people -->
   <xsl:template match="person-group">
     <div class="{local-name()}">
-      <xsl:apply-templates select="node()|@*"/>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates/>
     </div>
   </xsl:template>
 
@@ -160,10 +161,10 @@
 
   <!-- name -->
   <xsl:template match="name">
+    <xsl:call-template name="comma-separator"/>
     <span class="{local-name()}">
       <xsl:call-template name="name"/>
     </span>
-    <xsl:if test="not(position() = last())">, </xsl:if>
   </xsl:template>
 
   <!-- style elements -->
@@ -425,6 +426,7 @@
 
   <!-- "et al" -->
   <xsl:template match="person-group/etal">
+    <xsl:call-template name="comma-separator"/>
     <span class="{local-name()}">et al.</span>
   </xsl:template>
 
@@ -450,4 +452,15 @@
   <xsl:template match="mml:math">
     <xsl:copy-of select="."/>
   </xsl:template>
+
+  <!-- comma separator -->
+  <xsl:template name="comma-separator">
+      <xsl:param name="separator" select="', '"/>
+      <xsl:if test="position() != 1">
+        <xsl:value-of select="$separator"/>
+      </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="sub-article"/>
+
 </xsl:stylesheet>
