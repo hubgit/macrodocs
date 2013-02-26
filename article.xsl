@@ -7,6 +7,8 @@
 
   <xsl:output method="xml" encoding="utf-8" omit-xml-declaration="yes" standalone="yes" indent="yes"/>
 
+  <xsl:variable name="doi" select="article/front/article-meta/article-id[@pub-id-type='doi']"/>
+
   <!-- body of the article -->
   <xsl:template match="/">
     <article itemscope="itemscope" itemtype="scholarlyarticle">
@@ -17,6 +19,21 @@
     </article>
   </xsl:template>
 
+  <!-- style elements -->
+  <xsl:template match="sc | strike | monospace | overline | roman | sans-serif">
+    <span class="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+    </span>
+  </xsl:template>
+
+  <!-- inline elements -->
+  <xsl:template match="surname | given-names | email | label | year | month | day | contrib | source | volume | fpage | lpage | etal | pub-id | named-content | funding-source | award-id | inline-formula | x">
+    <span class="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+    </span>
+  </xsl:template>
+
+  <!-- front -->
   <xsl:template match="front">
     <header class="{local-name()}">
       <xsl:apply-templates select="article-meta/title-group/article-title"/>
@@ -26,87 +43,140 @@
       </div>
 
       <p class="context event" data-ignore-class="">
-        <xsl:variable name="datetype">
-           <xsl:choose>
-             <xsl:when test="article-meta/pub-date[@pub-type='epub']">
-               <xsl:copy-of select="'epub'"/>
-             </xsl:when>
-             <xsl:otherwise>
-               <xsl:copy-of select="'ppub'"/>
-             </xsl:otherwise>
-           </xsl:choose>
-        </xsl:variable>
-
-        <xsl:variable name="date" select="article-meta/pub-date[@pub-type=$datetype]"/>
-
-        <a rel="canonical">
-          <xsl:attribute name="href">
-            <xsl:text>http://dx.doi.org/</xsl:text>
-            <xsl:value-of select="article-meta/article-id[@pub-id-type='doi']"/>
-          </xsl:attribute>
-
-          <time itemprop="datePublished">
-            <xsl:value-of select="$date/year"/>
-            <xsl:if test="$date/month">-<xsl:value-of select="format-number($date/month, '00')"/></xsl:if>
-            <xsl:if test="$date/day">-<xsl:value-of select="format-number($date/day, '00')"/></xsl:if>
-          </time>
-        </a>
-
+        <xsl:call-template name="canonical"/>
         <xsl:text> · </xsl:text>
-
-        <i itemprop="provider">
-          <xsl:choose>
-            <xsl:when test="journal-meta/journal-title-group">
-              <xsl:value-of select="journal-meta/journal-title-group/journal-title"/>
-            </xsl:when>
-            <xsl:when test="journal-meta/journal-title">
-              <xsl:value-of select="journal-meta/journal-title"/>
-            </xsl:when>
-            <xsl:when test="journal-meta/journal-id[@journal-id-type='nlm-ta']">
-              <xsl:value-of select="journal-meta/journal-id[@journal-id-type='nlm-ta']"/>
-            </xsl:when>
-          </xsl:choose>
-        </i>
+        <xsl:call-template name="provider"/>
       </p>
     </header>
   </xsl:template>
 
-  <!--
-  <xsl:template name="toc">
-    <ol class="toc">
-      <xsl:for-each select="sec">
-          <li>
-            <xsl:choose>
-              <xsl:when test="@id">
-                <a href="#{@id}"><xsl:apply-templates select="title/node()"/></a>
-              </xsl:when>
-              <xsl:otherwise>
-                <span><xsl:apply-templates select="title/node()"/></span>
-              </xsl:otherwise>
-            </xsl:choose>
-            <xsl:call-template name="toc"/>
-          </li>
-      </xsl:for-each>
-    </ol>
+  <!-- canonical URL, publication date -->
+  <xsl:template name="canonical">
+    <a rel="canonical" href="http://dx.doi.org/{$doi}">
+      <xsl:call-template name="publication-date"/>
+    </a>
   </xsl:template>
--->
 
+  <!-- publication date -->
+  <xsl:template name="publication-date">
+    <xsl:variable name="datetype">
+      <xsl:choose>
+        <xsl:when test="article-meta/pub-date[@pub-type='epub']">
+          <xsl:copy-of select="'epub'"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy-of select="'ppub'"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="date" select="article-meta/pub-date[@pub-type=$datetype]"/>
+
+    <time itemprop="datePublished">
+      <xsl:value-of select="$date/year"/>
+      <xsl:if test="$date/month">-<xsl:value-of select="format-number($date/month, '00')"/></xsl:if>
+      <xsl:if test="$date/day">-<xsl:value-of select="format-number($date/day, '00')"/></xsl:if>
+    </time>
+  </xsl:template>
+
+  <!-- provider -->
+  <xsl:template name="provider">
+    <i itemprop="provider">
+      <xsl:choose>
+        <xsl:when test="journal-meta/journal-title-group">
+          <xsl:value-of select="journal-meta/journal-title-group/journal-title"/>
+        </xsl:when>
+        <xsl:when test="journal-meta/journal-title">
+          <xsl:value-of select="journal-meta/journal-title"/>
+        </xsl:when>
+        <xsl:when test="journal-meta/journal-id[@journal-id-type='nlm-ta']">
+          <xsl:value-of select="journal-meta/journal-id[@journal-id-type='nlm-ta']"/>
+        </xsl:when>
+      </xsl:choose>
+    </i>
+  </xsl:template>
+
+  <!-- the article title -->
+  <xsl:template match="article-title">
+    <h1 class="{local-name()}"><xsl:apply-templates select="node()|@*"/></h1>
+  </xsl:template>
+
+  <!-- people -->
+  <xsl:template match="person-group">
+    <div class="{local-name()}">
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates/>
+    </div>
+  </xsl:template>
+
+  <!-- name -->
+  <xsl:template match="name">
+    <xsl:param name="itemprop"/>
+
+    <xsl:call-template name="comma-separator"/>
+
+    <span class="{local-name()}">
+      <xsl:if test="string-length($itemprop)">
+        <xsl:attribute name="itemprop">
+          <xsl:value-of select="$itemprop"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:call-template name="name"/>
+    </span>
+  </xsl:template>
+
+  <!-- name (named template) -->
+  <xsl:template name="name">
+    <xsl:apply-templates select="given-names"/>
+    <xsl:if test="surname">
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="surname"/>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- body -->
   <xsl:template match="body">
     <main class="{local-name()}" lang="en">
-      <nav>
-        <!--<xsl:call-template name="toc"/>-->
-      </nav>
-
-      <xsl:apply-templates select="node()|@*"/>
+      <xsl:apply-templates select="@*"/>
+      <nav> </nav>
+      <xsl:apply-templates select="node()"/>
     </main>
   </xsl:template>
 
-  <!-- back -->
-  <xsl:template match="back">
-    <footer class="{local-name()}">
-      <xsl:apply-templates select="@*"/>
-      <xsl:apply-templates select="ref-list"/>
-    </footer>
+  <!-- sections -->
+  <xsl:template match="sec">
+    <section class="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+    </section>
+  </xsl:template>
+
+  <!-- section headings -->
+  <xsl:template match="title | fig/label | table-wrap/label">
+    <xsl:variable name="hierarchy" select="count(ancestor::sec | ancestor::back | ancestor::fig | ancestor::table-wrap)"/>
+
+    <xsl:if test="$hierarchy > 4">
+      <xsl:variable name="hierarchy">6</xsl:variable>
+    </xsl:if>
+
+    <xsl:variable name="heading">h<xsl:value-of select="$hierarchy + 1"/></xsl:variable>
+
+    <xsl:element name="{$heading}">
+      <xsl:attribute name="class">heading</xsl:attribute>
+      <xsl:attribute name="data-ignore-class"></xsl:attribute>
+      <xsl:apply-templates select="node()|@*"/>
+    </xsl:element>
+  </xsl:template>
+
+  <!-- "additional information" title -->
+  <xsl:template match="sec[@sec-type='additional-information']/title">
+    <h2><xsl:apply-templates select="node()|@*"/></h2>
+  </xsl:template>
+
+  <!-- table elements -->
+  <xsl:template match="table | tbody | thead | tfoot | column | tr | th | td | colgroup | col">
+    <xsl:element name="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+    </xsl:element>
   </xsl:template>
 
   <!-- ordered list -->
@@ -137,103 +207,18 @@
     </p>
   </xsl:template>
 
-  <!-- the article title -->
-  <xsl:template match="article-title">
-    <h1 class="{local-name()}"><xsl:apply-templates select="node()|@*"/></h1>
-  </xsl:template>
-
-  <!-- people -->
-  <xsl:template match="person-group">
-    <div class="{local-name()}">
-      <xsl:apply-templates select="@*"/>
-      <xsl:apply-templates/>
-    </div>
-  </xsl:template>
-
-  <!-- name -->
-  <xsl:template name="name">
-    <xsl:apply-templates select="given-names"/>
-    <xsl:if test="surname">
-      <xsl:text> </xsl:text>
-      <xsl:apply-templates select="surname"/>
-    </xsl:if>
-  </xsl:template>
-
-  <!-- name -->
-  <xsl:template match="name">
-    <xsl:param name="itemprop"/>
-
-    <xsl:call-template name="comma-separator"/>
-
-    <span class="{local-name()}">
-      <xsl:if test="string-length($itemprop)">
-        <xsl:attribute name="itemprop">
-          <xsl:value-of select="$itemprop"/>
-        </xsl:attribute>
-      </xsl:if>
-      <xsl:call-template name="name"/>
-    </span>
-  </xsl:template>
-
-  <!-- style elements -->
-  <xsl:template match="sc | strike | monospace | overline | roman | sans-serif">
-    <span class="{local-name()}">
-      <xsl:apply-templates select="node()|@*"/>
-    </span>
-  </xsl:template>
-
-  <!-- inline elements -->
-  <xsl:template match="surname | given-names | email | label | year | month | day | contrib | source | volume | fpage | lpage | etal | pub-id | named-content | funding-source | award-id | inline-formula | x">
-    <span class="{local-name()}">
-      <xsl:apply-templates select="node()|@*"/>
-    </span>
-  </xsl:template>
-
-  <!-- table elements -->
-  <xsl:template match="table | tbody | thead | tfoot | column | tr | th | td | colgroup | col">
-    <xsl:element name="{local-name()}">
-      <xsl:apply-templates select="node()|@*"/>
-    </xsl:element>
-  </xsl:template>
-
+  <!-- abbreviation -->
   <xsl:template match="abbrev">
-    <abbr class="{local-name">
+    <abbr class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </abbr>
   </xsl:template>
 
-  <!-- sections -->
-  <xsl:template match="sec">
-    <section class="{local-name()}">
-      <xsl:apply-templates select="node()|@*"/>
-    </section>
-  </xsl:template>
-
-  <!-- section headings -->
-  <xsl:template match="title | fig/label | table-wrap/label">
-    <xsl:variable name="hierarchy" select="count(ancestor::sec | ancestor::back | ancestor::fig | ancestor::table-wrap)"/>
-
-    <xsl:if test="$hierarchy > 4">
-      <xsl:variable name="hierarchy">6</xsl:variable>
-    </xsl:if>
-
-    <xsl:variable name="heading">h<xsl:value-of select="$hierarchy + 1"/></xsl:variable>
-
-    <xsl:element name="{$heading}">
-      <xsl:attribute name="class">heading</xsl:attribute>
-      <xsl:attribute name="data-ignore-class"></xsl:attribute>
-      <xsl:apply-templates select="node()|@*"/>
-    </xsl:element>
-  </xsl:template>
-
+  <!-- supplementary material title -->
   <xsl:template match="supplementary-material/caption/title">
     <section class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </section>
-  </xsl:template>
-
-  <xsl:template match="sec[@sec-type='additional-information']/title">
-    <h2><xsl:apply-templates select="node()|@*"/></h2>
   </xsl:template>
 
   <!-- links -->
@@ -243,6 +228,7 @@
     </a>
   </xsl:template>
 
+  <!-- DOI -->
   <xsl:template match="ext-link[@ext-link-type='doi']">
     <a class="{local-name()}" href="http://dx.doi.org/{@xlink:href}">
       <xsl:apply-templates select="node()|@*"/>
@@ -264,24 +250,6 @@
       </xsl:call-template>
     </xsl:variable>
     <a class="{local-name()} bibr" href="{$url}" rel="tooltip" data-rid="{@rid}"><xsl:apply-templates select="node()|@*"/></a>
-  </xsl:template>
-
-  <!-- cross-referenced reference -->
-  <xsl:template name="reference-url">
-    <xsl:param name="ref"/>
-    <xsl:variable name="doi" select="$ref//pub-id[@pub-id-type='doi']"/>
-    <xsl:variable name="pmid" select="$ref//pub-id[@pub-id-type='pmid']"/>
-    <xsl:choose>
-      <xsl:when test="$doi">
-        <xsl:value-of select="concat('http://dx.doi.org/', $doi)"/>
-      </xsl:when>
-      <xsl:when test="$pmid">
-        <xsl:value-of select="concat('http://pubmed.gov/', $pmid)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="concat('#', @id)"/>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:template>
 
   <!-- figure -->
@@ -317,25 +285,6 @@
   <xsl:template match="graphic" mode="fig">
     <xsl:variable name="href" select="@xlink:href"/>
     <img class="{local-name()}" data-src="{$href}"><xsl:apply-templates select="@*"/></img>
-  </xsl:template>
-
-  <!-- supplementary material -->
-  <xsl:template match="supplementary-material">
-    <div class="{local-name()}">
-      <xsl:apply-templates select="node()|@*"/>
-      <a href="{@xlink:href}" download="" class="btn">Download</a>
-    </div>
-  </xsl:template>
-
-  <!-- acknowledgments -->
-  <xsl:template match="ack">
-    <section class="{local-name()}">
-      <xsl:apply-templates select="@*"/>
-      <xsl:if test="not(title)">
-        <h2 class="heading">Acknowledgments</h2>
-      </xsl:if>
-      <xsl:apply-templates select="node()"/>
-    </section>
   </xsl:template>
 
   <!-- uri -->
@@ -393,67 +342,115 @@
 
   <!-- formatting -->
   <xsl:template match="italic">
-      <i>
-          <xsl:apply-templates select="node()|@*"/>
-      </i>
+    <i>
+      <xsl:apply-templates select="node()|@*"/>
+    </i>
   </xsl:template>
 
   <xsl:template match="bold">
-      <b>
-          <xsl:apply-templates select="node()|@*"/>
-      </b>
+    <b>
+      <xsl:apply-templates select="node()|@*"/>
+    </b>
   </xsl:template>
 
   <xsl:template match="sub">
-      <sub>
-          <xsl:apply-templates select="node()|@*"/>
-      </sub>
+    <sub>
+      <xsl:apply-templates select="node()|@*"/>
+    </sub>
   </xsl:template>
 
   <xsl:template match="sup">
-      <sup>
-          <xsl:apply-templates select="node()|@*"/>
-      </sup>
+    <sup>
+      <xsl:apply-templates select="node()|@*"/>
+    </sup>
   </xsl:template>
 
   <xsl:template match="underline">
-      <u>
-          <xsl:apply-templates select="node()|@*"/>
-      </u>
+    <u>
+      <xsl:apply-templates select="node()|@*"/>
+    </u>
   </xsl:template>
 
   <xsl:template match="preformat[@preformat-type='code']">
-      <pre>
-        <code>
-          <xsl:apply-templates select="node()|@*"/>
-        </code>
-      </pre>
+    <pre>
+      <xsl:apply-templates select="@*"/>
+      <code>
+        <xsl:apply-templates select="node()"/>
+      </code>
+    </pre>
   </xsl:template>
 
   <xsl:template match="preformat">
-      <pre>
-          <xsl:apply-templates select="node()|@*"/>
-      </pre>
+    <pre>
+      <xsl:apply-templates select="node()|@*"/>
+    </pre>
   </xsl:template>
 
   <xsl:template match="break">
-      <br/>
+    <br/>
   </xsl:template>
 
   <xsl:template match="hr">
-      <hr/>
+    <hr/>
   </xsl:template>
 
+  <!-- supplementary material -->
+  <xsl:template match="supplementary-material">
+    <div class="{local-name()}">
+      <xsl:apply-templates select="node()|@*"/>
+      <a href="{@xlink:href}" download="" class="btn">Download</a>
+    </div>
+  </xsl:template>
+
+  <!-- acknowledgments -->
+  <xsl:template match="ack">
+    <section class="{local-name()}">
+      <xsl:apply-templates select="@*"/>
+      <xsl:if test="not(title)">
+        <h2 class="heading">Acknowledgments</h2>
+      </xsl:if>
+      <xsl:apply-templates select="node()"/>
+    </section>
+  </xsl:template>
+
+  <!-- aside -->
   <xsl:template match="boxed-text">
     <aside class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </aside>
   </xsl:template>
 
+  <!-- blockquote -->
   <xsl:template match="disp-quote">
     <blockquote class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </blockquote>
+  </xsl:template>
+
+  <!-- back -->
+  <xsl:template match="back">
+    <footer class="{local-name()}">
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates select="ref-list"/>
+    </footer>
+  </xsl:template>
+
+  <!-- reference url (named template) -->
+  <xsl:template name="reference-url">
+    <xsl:param name="ref"/>
+    <xsl:variable name="doi" select="$ref//pub-id[@pub-id-type='doi']"/>
+    <xsl:variable name="pmid" select="$ref//pub-id[@pub-id-type='pmid']"/>
+    <xsl:choose>
+      <xsl:when test="$doi">
+        <xsl:value-of select="concat('http://dx.doi.org/', $doi)"/>
+      </xsl:when>
+      <xsl:when test="$pmid">
+        <xsl:value-of select="concat('http://pubmed.gov/', $pmid)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat('#', @id)"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!-- reference list -->
@@ -521,7 +518,7 @@
     </span>
   </xsl:template>
 
-  <!-- article title in references -->
+  <!-- article title in citation -->
   <xsl:template match="mixed-citation/article-title|citation/article-title|element-citation/article-title">
     <xsl:variable name="doi" select="../pub-id[@pub-id-type='doi']"/>
     <xsl:variable name="pmid" select="../pub-id[@pub-id-type='pmid']"/>
@@ -602,12 +599,13 @@
 
   <!-- comma separator -->
   <xsl:template name="comma-separator">
-      <xsl:param name="separator" select="', '"/>
-      <xsl:if test="position() != 1">
-        <xsl:value-of select="$separator"/>
-      </xsl:if>
+    <xsl:param name="separator" select="', '"/>
+    <xsl:if test="position() != 1">
+      <xsl:value-of select="$separator"/>
+    </xsl:if>
   </xsl:template>
 
+  <!-- sub-article -->
   <xsl:template match="sub-article"/>
 
 </xsl:stylesheet>
