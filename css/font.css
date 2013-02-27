@@ -35,6 +35,7 @@ figure p,
 	font-family: inherit;
 }
 
+/*
 #introduction > p:first-of-type:first-letter {
   font-family: "Lustria", "Georgia", serif;
   float: left;
@@ -42,3 +43,4 @@ figure p,
   line-height: 1em;
   margin: -0.2rem 0.5rem 0 0;
 }
+*/

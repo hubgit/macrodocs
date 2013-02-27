@@ -362,6 +362,8 @@ table a.xref {
   vertical-align: super;
   font-size: smaller;
   line-height: 0;
+  display: run-in;
+  padding-right: 0.5em;
 }
 
 ul, ol {
@@ -377,6 +379,7 @@ li p {
   padding: 0 1rem;
 }
 
+/*
 .table-wrap-foot {
   display: table;
 }
@@ -388,9 +391,11 @@ li p {
 .table-wrap-foot .fn > * {
   display: table-cell;
 }
+*/
 
 .table-wrap-foot .fn p {
   padding-left: 0.5em !important;
+  margin-bottom: 0 !important;
 }
 
 /*

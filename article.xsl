@@ -574,6 +574,15 @@
     </div>
   </xsl:template>
 
+  <!-- alternatives -->
+  <xsl:template match="alternatives">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="alternatives/graphic"/>
+  <xsl:template match="alternatives/inline-graphic"/>
+
+
   <!-- id attribute (direct copy) -->
   <xsl:template match="@id | @colspan | @rowspan | @align">
     <xsl:copy-of select="."/>
@@ -592,10 +601,25 @@
   <!-- ignore namespaced attributes -->
   <xsl:template match="@*[namespace-uri()]"></xsl:template>
 
-  <!-- mathml (direct copy) -->
+  <!-- mathml root element -->
   <xsl:template match="mml:math">
-    <xsl:copy-of select="."/>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <xsl:copy-of select="@*"/>
+          <xsl:apply-templates mode="mathml"/>
+      </math>
   </xsl:template>
+
+  <!-- mathml (direct copy) -->
+  <xsl:template match="*" mode="mathml">
+      <xsl:element name="{local-name()}" xmlns="http://www.w3.org/1998/Math/MathML">
+          <xsl:copy-of select="@*"/>
+          <xsl:apply-templates mode="mathml"/>
+      </xsl:element>
+      <!--<xsl:copy-of select="."/>-->
+  </xsl:template>
+
+  <!-- TeX math -->
+  <xsl:template match="tex-math"/>
 
   <!-- comma separator -->
   <xsl:template name="comma-separator">
