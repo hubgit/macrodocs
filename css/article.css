@@ -83,10 +83,13 @@ figure img {
 
 figcaption .heading,
 .table-wrap .heading {
-	margin: 0 0 1rem;
+  margin: 0 0 1rem;
   padding: 0 !important;
   font-size: 1.2rem;
   font-family: "Gill Sans";
+  font-weight: normal;
+  color: rgb(105, 105, 105);
+  letter-spacing: 0;
 }
 
 figcaption p,
@@ -95,7 +98,7 @@ figcaption p,
   margin-right: 0 !important;
   margin-bottom: 0.5rem;
   font-family: "Gill Sans", sans-serif;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .table-wrap .alternatives .graphic {
