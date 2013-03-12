@@ -100,7 +100,9 @@ $(function() {
 				return text.replace(/\+/g, " ");
 			});
 		}).forEach(function(item) {
-			data[item[0]] = item[1].replace(/\/$/, "");
+			if (item[1]) {
+				data[item[0]] = item[1].replace(/\/$/, "");
+			}
 		});
 
 		return data;
@@ -131,15 +133,26 @@ $(function() {
 
 	if (data.pmc) {
 		app.source = "pmc";
+		$("#index [name=pmc]").val(data.pmc);
 		fetchAndTransform(data.pmc);
 	} else if (data.doi) {
 		app.source = "pmc";
+		$("#index [name=doi]").val(data.doi);
 		fetchDOI(data.doi);
 	} else if (data.gist) {
 		app.source = "gist";
+		$("#index [name=gist]").val(data.gist);
 		fetchAndTransform(data.gist);
 	} else if (data.url) {
 		app.source = "url";
+		$("#index [name=url]").val(data.url);
 		fetchAndTransform(data.url);
+	} else {
+		$("#index").show();
+
+		if (data.q) {
+			$("#index [name=q]").val(data.q);
+			searchPMC(data.q);
+		}
 	}
 });

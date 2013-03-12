@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="//twitter.github.com/bootstrap/assets/css/bootstrap.css" media="screen">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lustria" media="screen">
 
+<link rel="stylesheet" href="/css/index.css" media="screen">
 <link rel="stylesheet" href="/css/layout.css" media="screen">
 <link rel="stylesheet" href="/css/bootstrap-override.css" media="screen">
 <link rel="stylesheet" href="/css/font.css" media="screen">
@@ -97,3 +98,73 @@
     </div>
   </form>
 </script>
+
+<div id="index">
+  <h1>Macrodocs</h1>
+  <p>Client-side Open Access article rejigger</p>
+
+  <div class="row">
+    <div class="span8">
+      <form>
+        <fieldset>
+          <legend>DOI</legend>
+          <div class="input-append">
+            <input type="text" size="255" name="doi" placeholder="PubMed Central article DOI">
+            <button type="submit" class="btn btn-primary">load</button>
+            <a class="example btn btn-success" href="./?doi=10.7554/eLife.00003">example</a>
+          </div>
+        </fieldset>
+      </form>
+
+      <form>
+        <fieldset>
+          <legend>PMC ID</legend>
+          <div class="input-append">
+            <input type="text" size="255" name="pmc" placeholder="PubMed Central article ID">
+            <button type="submit" class="btn btn-primary">load</button>
+            <a class="example btn btn-success" href="./?pmc=2887360">example</a>
+          </div>
+        </fieldset>
+      </form>
+
+      <form>
+        <fieldset>
+          <legend>Gist</legend>
+          <div class="input-append">
+            <input type="text" size="255" name="gist" placeholder="Gist ID">
+            <button type="submit" class="btn btn-primary">load</button>
+            <a class="example btn btn-success" href="./?gist=3638672">example</a>
+          </div>
+        </fieldset>
+      </form>
+
+      <form>
+        <fieldset>
+          <legend>URL</legend>
+          <div class="input-append">
+            <input type="text" size="255" name="url" placeholder="URL of article XML">
+            <button type="submit" class="btn btn-primary">load</button>
+            <a class="example btn btn-success" href="./?url=https://peerj.com/articles/53.xml">example</a>
+          </div>
+          <span class="help-block">NLM or JATS XML file (must have "Access-Control-Allow-Origin: *" header)</span>
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="span8">
+      <form>
+        <fieldset>
+          <legend>Search</legend>
+          <div class="input-append">
+            <input type="text" size="255" name="q">
+            <button type="submit" class="btn btn-primary">search</button>
+          </div>
+        </fieldset>
+      </form>
+
+      <div id="search-results"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/search.js"></script>

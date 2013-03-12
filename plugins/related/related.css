@@ -1,3 +1,7 @@
 #related-articles ul {
 	list-style-type: none;
 }
+
+#related-articles li {
+	padding-bottom: 0.25rem;
+}

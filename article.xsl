@@ -27,7 +27,7 @@
   </xsl:template>
 
   <!-- inline elements -->
-  <xsl:template match="surname | given-names | email | label | year | month | day | contrib | source | volume | fpage | lpage | etal | pub-id | named-content | funding-source | award-id | inline-formula | x">
+  <xsl:template match="surname | given-names | email | label | year | month | day | contrib | source | volume | fpage | lpage | etal | pub-id | named-content | styled-content | funding-source | award-id | inline-formula | x">
     <span class="{local-name()}">
       <xsl:apply-templates select="node()|@*"/>
     </span>
@@ -584,7 +584,7 @@
 
 
   <!-- id attribute (direct copy) -->
-  <xsl:template match="@id | @colspan | @rowspan | @align">
+  <xsl:template match="@id | @colspan | @rowspan | @align | @style">
     <xsl:copy-of select="."/>
   </xsl:template>
 

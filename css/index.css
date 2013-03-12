@@ -1,0 +1,26 @@
+#index {
+	display: none;
+	padding: 1rem 2rem;
+}
+
+#index input {
+	width: 400px;
+}
+
+#index .input-append {
+	margin-bottom: 5px;
+}
+
+#index .help-block {
+	font-size: 80%;
+	margin-left: 1rem;
+}
+
+#index ul {
+	list-style-type: none;
+	margin: 1rem 0;
+}
+
+#index li {
+	padding-bottom: 0.25rem;
+}

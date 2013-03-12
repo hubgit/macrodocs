@@ -75,7 +75,7 @@ figure .image-container {
   /*margin-right: 2rem;*/
 }
 
-figure img {
+figure .graphic {
 	margin: 0 2rem 1rem 0;
   max-height: 840px;
   cursor: pointer;
@@ -88,7 +88,6 @@ figcaption .heading,
   font-size: 1.2rem;
   font-family: "Gill Sans";
   font-weight: normal;
-  color: rgb(105, 105, 105);
   letter-spacing: 0;
 }
 
@@ -322,9 +321,14 @@ table {
   margin: 1rem 0;
 }
 
-table, .table-wrap-foot {
+table {
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
   font-weight: 200;
+}
+
+.table-wrap-foot {
+  font-family: "Gill Sans", sans-serif;
+  line-height: 1.2;
 }
 
 thead {
@@ -399,6 +403,7 @@ li p {
 .table-wrap-foot .fn p {
   padding-left: 0.5em !important;
   margin-bottom: 0 !important;
+  margin-left: 0 !important;
 }
 
 /*
@@ -452,4 +457,10 @@ dt {
 
 dt:after {
   content: " ";
+}
+
+.supplementary-material {
+  padding: 2rem;
+  margin: 0;
+  background: white;
 }
