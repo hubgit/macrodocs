@@ -78,6 +78,20 @@ $(document).on("article.loaded", function(event, article){
 		sections[heading] = section;
 	});
 
+	article.find("section").each(function() {
+		var id = this.getAttribute("id");
+
+		if (!id) {
+			return;
+		}
+
+		var removableSections = ["authors--contributions", "competing-interests"];
+
+		if ($.inArray(id, removableSections) !== -1) {
+			$(this).remove();
+		}
+	});
+
 	var scrollToTop = function() {
 		$("html, body").animate({ scrollTop: 0 }, "fast");
 	}
@@ -99,13 +113,13 @@ $(document).on("article.loaded", function(event, article){
 		article.find("#methods, #references").each(function() {
 			var node = $(this);
 			var text = node.find("h2:first").text();
-			
+
 			if (text.match(/methods/i)) {
 				text = "Methods";
 			} else if (text.match(/references/i)) {
 				text = "References";
 			}
-			
+
 			node.addClass("pseudo-main")
 				.data("tab-heading", text)
 				.insertBefore(footer);
@@ -175,7 +189,7 @@ $(document).on("article.loaded", function(event, article){
 
 $(document).on("article.ready", function(event, article){
 	article = $(article);
-	
+
 	var applyBalanceText = function() {
 		article.find("h1").balanceText();
 	}

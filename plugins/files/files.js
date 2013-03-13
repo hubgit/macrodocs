@@ -1,10 +1,16 @@
 $(document).on("article.loaded", function(event, article){
 	var $article = $(article);
 
-	/* tranform image URLs to PMC URLs */
+	/* tranform file URLs to PMC URLs */
 	var setFileURL = function(index, node) {
 		var node = $(node);
-		node.attr("href", fileURL(node.attr("href")));
+		node.attr("href", fileURL(node.data("href")));
+	};
+
+	/* tranform video URLs to PMC URLs */
+	var setVideoURL = function(index, node) {
+		var node = $(node);
+		node.attr("src", fileURL(node.data("src")));
 	};
 
 	/* tranform image URLs to PMC URLs */
@@ -54,5 +60,7 @@ $(document).on("article.loaded", function(event, article){
 		}
 	};
 
-	$article.find("[data-src]").each(setImageURL);
+	$article.find("img[data-src]").each(setImageURL);
+	$article.find("video[data-src]").each(setVideoURL);
+	$article.find("a[data-href]").each(setFileURL);
 });

@@ -151,7 +151,7 @@
   </xsl:template>
 
   <!-- section headings -->
-  <xsl:template match="title | fig/label | table-wrap/label">
+  <xsl:template match="title">
     <xsl:variable name="hierarchy" select="count(ancestor::sec | ancestor::back | ancestor::fig | ancestor::table-wrap)"/>
 
     <xsl:if test="$hierarchy > 4">
@@ -165,6 +165,13 @@
       <xsl:attribute name="data-ignore-class"></xsl:attribute>
       <xsl:apply-templates select="node()|@*"/>
     </xsl:element>
+  </xsl:template>
+
+  <!-- figure/table labels -->
+  <xsl:template match="fig/label | table-wrap/label">
+    <div class="{local-name()} heading">
+      <xsl:apply-templates select="node()|@*"/>
+    </div>
   </xsl:template>
 
   <!-- "additional information" title -->
@@ -259,6 +266,7 @@
 
       <div class="image-container">
         <xsl:apply-templates select="graphic" mode="fig"/>
+        <xsl:apply-templates select="media" mode="fig"/>
       </div>
 
       <figcaption>
@@ -277,14 +285,22 @@
 
   <!-- graphic -->
   <xsl:template match="graphic | inline-graphic">
-    <xsl:variable name="href" select="@xlink:href"/>
-    <img class="{local-name()}" data-src="{$href}"><xsl:apply-templates select="@*"/></img>
+    <img class="{local-name()}" data-src="{@xlink:href}">
+      <xsl:apply-templates select="@*"/>
+    </img>
   </xsl:template>
 
   <!-- figure graphic -->
   <xsl:template match="graphic" mode="fig">
-    <xsl:variable name="href" select="@xlink:href"/>
-    <img class="{local-name()}" data-src="{$href}"><xsl:apply-templates select="@*"/></img>
+    <img class="{local-name()}" data-src="{@xlink:href}">
+      <xsl:apply-templates select="@*"/></img>
+  </xsl:template>
+
+  <!-- figure video -->
+  <xsl:template match="media" mode="fig">
+    <video class="{local-name()}" data-src="{@xlink:href}" controls="controls">
+      <xsl:apply-templates select="@*"/>
+    </video>
   </xsl:template>
 
   <!-- uri -->
