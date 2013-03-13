@@ -174,6 +174,9 @@
     </div>
   </xsl:template>
 
+  <!-- section label -->
+  <xsl:template match="sec/label"/>
+
   <!-- "additional information" title -->
   <xsl:template match="sec[@sec-type='additional-information']/title">
     <h2><xsl:apply-templates select="node()|@*"/></h2>
