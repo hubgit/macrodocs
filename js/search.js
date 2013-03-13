@@ -12,7 +12,7 @@ var searchPMC = function(term) {
 	$.ajax({
 		url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
 		data: data,
-		datatype: "xml",
+		dataType: "xml",
 		success: function(doc) {
 			var template = [
 				"/eSearchResult/IdList/Id",
@@ -25,8 +25,6 @@ var searchPMC = function(term) {
 				resultsContainer.text("No articles matched the search terms");
 				return;
 			}
-
-			console.log(result);
 
 			resultsContainer.html("Fetching details&hellip;");
 
@@ -42,7 +40,7 @@ var searchPMC = function(term) {
 			$.ajax({
 				url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",
 				data: data,
-				datatype: "xml",
+				dataType: "xml",
 				success: function(doc) {
 					resultsContainer.empty();
 

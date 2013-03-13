@@ -15,7 +15,7 @@ $(document).on("article.ready", function(event, article){
 	$.ajax({
 		url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi",
 		data: data,
-		datatype: "xml",
+		dataType: "xml",
 		success: function(doc) {
 			var template = [
 				"/eLinkResult/LinkSet/LinkSetDb/Link",
@@ -43,7 +43,7 @@ $(document).on("article.ready", function(event, article){
 			$.ajax({
 				url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi",
 				data: data,
-				datatype: "xml",
+				dataType: "xml",
 				success: function(doc) {
 					var template = [
 						"/eLinkResult/LinkSet/LinkSetDb/Link",
@@ -68,7 +68,7 @@ $(document).on("article.ready", function(event, article){
 					$.ajax({
 						url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",
 						data: data,
-						datatype: "xml",
+						dataType: "xml",
 						success: function(doc) {
 							var template = [
 								"/eSummaryResult/DocSum",

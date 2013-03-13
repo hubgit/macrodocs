@@ -85,7 +85,11 @@ $(document).on("article.loaded", function(event, article){
 			return;
 		}
 
-		var removableSections = ["authors--contributions", "competing-interests"];
+		var removableSections = [
+			"author-contributions",
+			"authors--contributions",
+			"competing-interests"
+		];
 
 		if ($.inArray(id, removableSections) !== -1) {
 			$(this).remove();
