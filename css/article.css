@@ -26,7 +26,8 @@ h1 {
 h2 {
   font-weight: 400;
 	background: #444;
-	color: #DDD8C5;
+	/*color: #DDD8C5;*/
+	color: rgb(172, 67, 67);
   font-size: 1.8rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
