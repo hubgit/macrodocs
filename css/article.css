@@ -472,6 +472,7 @@ dt:after {
   background: white;
 }
 
+#background p,
 #introduction p,
 #discussion p {
 	max-width: 50em;
@@ -479,12 +480,16 @@ dt:after {
 	line-height: 1.6em;
 }
 
+#background p:not(:first-of-type),
 #introduction p:not(:first-of-type),
 #discussion p:not(:first-of-type) {
 	text-indent: 2em;
 }
 
+/*
+#background p:not(:last-of-type),
 #introduction p:not(:last-of-type),
 #discussion p:not(:last-of-type) {
 	margin-bottom: 0;
 }
+*/
