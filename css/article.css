@@ -474,7 +474,8 @@ dt:after {
 
 #background p,
 #introduction p,
-#discussion p {
+#discussion p,
+#conclusions p {
 	max-width: 50em;
 	font-size: 110%;
 	line-height: 1.6em;
@@ -482,14 +483,16 @@ dt:after {
 
 #background p:not(:first-of-type),
 #introduction p:not(:first-of-type),
-#discussion p:not(:first-of-type) {
+#discussion p:not(:first-of-type),
+#conclusions p:not(:first-of-type) {
 	text-indent: 2em;
 }
 
 /*
 #background p:not(:last-of-type),
 #introduction p:not(:last-of-type),
-#discussion p:not(:last-of-type) {
+#discussion p:not(:last-of-type),
+#conclusions p:not(:last-of-type) {
 	margin-bottom: 0;
 }
 */
