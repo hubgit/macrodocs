@@ -98,6 +98,7 @@ figcaption p,
   margin-bottom: 0.5rem;
   font-family: "Gill Sans", sans-serif;
   line-height: 1.2;
+  font-size: 105%;
 }
 
 .table-wrap .alternatives .graphic {
