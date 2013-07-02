@@ -20,6 +20,10 @@ $(document).on("article.loaded", function(event, article){
 	};
 
 	var basedURL = function(src) {
+		if (src.match(/^http:/)) {
+			return src;
+		}
+		
 		//var matches = $article.find("a[rel=canonical]").attr("href").match(/^(.+)\//);
 		// var base = matches[1];
 
