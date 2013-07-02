@@ -20,7 +20,7 @@ $(document).on("article.loaded", function(event, article){
 	};
 
 	var basedURL = function(src) {
-		if (src.match(/^http:/)) {
+		if (src.match(/^https?:/)) {
 			return src;
 		}
 		
