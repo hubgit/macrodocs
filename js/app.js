@@ -26,16 +26,26 @@ $(function() {
 	};
 
 	var transformXML = function(xsl, dom) {
-		/* import the XSL stylesheet */
-		var processor = new XSLTProcessor();
-		processor.importStylesheet(xsl);
-
 		if (app.source === "pmc") {
 			dom = dom.getElementsByTagName("article")[0];
 		}
 
+		var start = Date.now();
+
+		/* import the XSL stylesheet */
+		if (data.xslt == "saxon") {
+			var processor = Saxon.newXSLT20Processor(xsl);
+		} else {
+			var processor = new XSLTProcessor();
+			processor.importStylesheet(xsl);
+		}
+
 		/* transform the XML document to an XHTML fragment */
 		var fragment = processor.transformToFragment(dom, document);
+
+		if (typeof console != "undefined") {
+			console.log("XSLT processing took " + (Date.now() - start) + " milliseconds");
+		}
 
 		var node = document.createElement("div");
 		node.appendChild(fragment);
