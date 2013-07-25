@@ -37,7 +37,7 @@ $(document).on("article.ready", function(event, article){
 			    linkname: "pubmed_pubmed",
 			    retmode: "xml",
 			    id: result[0].id,
-			    term: "pubmed pmc open access[filter]"
+			    term: "pubmed pmc open access[filter] AND free full text[filter]"
 			};
 
 			$.ajax({
