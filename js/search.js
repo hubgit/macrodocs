@@ -6,7 +6,7 @@ var searchPMC = function(term) {
 	    email: "alf@hubmed.org",
 	    db: "pubmed",
 	    retmode: "xml",
-	    term: term + " AND pubmed pmc open access[filter]"
+	    term: term + " AND pubmed pmc open access[filter] AND free full text[filter]"
 	};
 
 	$.ajax({
