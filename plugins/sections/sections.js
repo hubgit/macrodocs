@@ -87,6 +87,7 @@ $(document).on("article.loaded", function(event, article){
 
 		var removableSections = [
 			"author-contributions",
+			"author-s-contributions",
 			"authors--contributions",
 			"competing-interests"
 		];
