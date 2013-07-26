@@ -33,7 +33,7 @@ $(function() {
 		var start = Date.now();
 
 		/* import the XSL stylesheet */
-		if (data.xslt == "saxon") {
+		if (data.xslt == "saxonce") {
 			var processor = Saxon.newXSLT20Processor(xsl);
 		} else {
 			var processor = new XSLTProcessor();
