@@ -1,3 +1,9 @@
+@media screen {
+	html {
+		font-size: 100%;
+	}
+}
+
 .navbar {
 	font-variant: small-caps;
 	/*-webkit-transform:rotate(90deg);*/
