@@ -3,11 +3,8 @@
 	padding: 1rem 2rem;
 }
 
-#index input {
+#index .input-group {
 	width: 400px;
-}
-
-#index .input-append {
 	margin-bottom: 5px;
 }
 
