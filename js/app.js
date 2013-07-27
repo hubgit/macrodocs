@@ -40,11 +40,15 @@ $(function() {
 			processor.importStylesheet(xsl);
 		}
 
+		var loaded = Date.now();
+
 		/* transform the XML document to an XHTML fragment */
 		var fragment = processor.transformToFragment(dom, document);
 
+		var end = Date.now();
+
 		if (typeof console != "undefined") {
-			console.log("XSLT processing took " + (Date.now() - start) + " milliseconds");
+			console.log("XSLT transformation took " + (end - loaded) + "ms, loading the stylesheet took " + (loaded - start) + "ms");
 		}
 
 		var node = document.createElement("div");
