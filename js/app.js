@@ -47,8 +47,13 @@ $(function() {
 
 		var end = Date.now();
 
+		/* transform the XML document to an XHTML fragment */
+		var fragment = processor.transformToFragment(dom, document);
+
+		var second = Date.now();
+
 		if (typeof console != "undefined") {
-			console.log("XSLT transformation took " + (end - loaded) + "ms, loading the stylesheet took " + (loaded - start) + "ms");
+			console.log("loading the stylesheet took " + (loaded - start) + "ms, first transformation took " + (end - loaded) + "ms, second transformation took " + (second - end) + "ms,");
 		}
 
 		var node = document.createElement("div");
