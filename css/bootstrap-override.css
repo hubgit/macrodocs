@@ -2,11 +2,19 @@
 	html {
 		font-size: 100%;
 	}
+	
+	.nav > li {
+		display: inline-block;
+	}
 }
 
 .navbar {
 	font-variant: small-caps;
-	/*-webkit-transform:rotate(90deg);*/
+	left: auto;
+	background: none;
+	min-height: 0;
+	padding-right: 0;
+	padding-left: 0;
 }
 
 .navbar .nav {
