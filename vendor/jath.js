@@ -8,6 +8,8 @@
 Jath = {};
 Jath.parse = parse;
 Jath.resolver = null;
+Jath.namespaces = null;
+
 // values prefixed with literal charactar marker will not be
 // treated as xpath expressions and will be output directly
 Jath.literalChar = ":";
@@ -35,7 +37,7 @@ else {
 }
 
 /**
-* parse: 
+* parse:
 *	process xml doc according to the given json template
 *	@template - output spec as a json template
 *	@xmldoc - input xml document
@@ -60,10 +62,11 @@ function parse( template, xmldoc, node ) {
 
 function parseArray( template, xmldoc, node ) {
 	var retVal = [];
-	
+
 	if( template[0] != null ) {
 		if( m_browser == 'msie' ) {
 			xmldoc.setProperty("SelectionLanguage", "XPath");
+			xmldoc.setProperty("SelectionNamespaces", createResolverString() );
 			var nodeList = node.selectNodes( template[0] );
 			var thisNode;
 			while( thisNode = nodeList.nextNode() ) {
@@ -85,13 +88,13 @@ function parseArray( template, xmldoc, node ) {
 		}
 	}
 	// we can have an array output without iterating over the source
-	// data - in this case, current node is static 
+	// data - in this case, current node is static
 	else {
 		for( var i=1; i < template.length; i++ ) {
 			retVal.push( parse( template[i], xmldoc, node ) );
 		}
 	}
-	
+
 	return retVal;
 }
 
@@ -105,34 +108,43 @@ function parseObject( template, xmldoc, node ) {
 }
 
 function parseItem( template, xmldoc, node ) {
-	if( m_browser == 'msie' ) {
-		xmldoc.setProperty("SelectionLanguage", "XPath");
-		if( typeOf( template ) == 'string' && template.substring( 0, 1 ) != Jath.literalChar ) {
-			return node.selectSingleNode( template ).text;
-		}
-		else {
-			return template.substring( 1 );
-		}
-	}
-	else if( m_browser == 'node' ) {
-		require('util').puts( template );	
-			// node can be null if query fails
-			var itemNode = node.get( template );
-			if( itemNode ) {
-				return itemNode.text();
+	if( typeOf( template ) == 'string' && template.substring( 0, 1 ) != Jath.literalChar ) {
+		if( m_browser == 'msie' ) {
+			xmldoc.setProperty("SelectionLanguage", "XPath");
+			xmldoc.setProperty("SelectionNamespaces", createResolverString() );
+			if( node.selectSingleNode( template ) != null ) {
+				return node.selectSingleNode( template ).text;
 			}
 			else {
 				return null;
 			}
-	}
-	else {
-		if( typeOf( template ) == 'string' && template[0] != Jath.literalChar ) {
-			return xmldoc.evaluate( template, node, Jath.resolver, XPathResult.STRING_TYPE, null ).stringValue;
+		}
+		else if( m_browser == 'node' ) {
+			var itemNode = node.get( template );
+			if( itemNode && itemNode.text ) {
+				return itemNode.text();
+			}
+			else if( itemNode && itemNode.value ) {
+				return itemNode.value();
+			}
+			else {
+				return null;
+			}
 		}
 		else {
-			return template.substring( 1 );
+			var itemNode = xmldoc.evaluate( template, node, Jath.resolver, XPathResult.STRING_TYPE, null );
+			if( itemNode ) {
+				return itemNode.stringValue;
+			}
+			else {
+				return null;
+			}
 		}
 	}
+	else {
+		return template.substring( 1 );
+	}
+
 }
 
 /**
@@ -153,6 +165,24 @@ function typeOf(value) {
 		}
 	}
 	return s;
+}
+
+/**
+* IE requires namespaces to be in the form that
+* an xml document would provide. Use underscore
+* for default ns.
+*/
+function createResolverString() {
+	var retval = [];
+	for( var item in Jath.namespaces ) {
+		if( item == "_" ) {
+			retval.push( "xmlns='" + Jath.namespaces[item] + "'" );
+		}
+		else {
+			retval.push( "xmlns:" + item + "='" + Jath.namespaces[item] + "'" );
+		}
+	}
+	return retval.join(" ");
 }
 
 })();
