@@ -25,72 +25,66 @@ $(function() {
 		$.when(fetchXML, fetchXSL).done(transformDocument);
 	};
 
-	var transformXML = function(xsl, dom) {
+	var transformXML = function(xsl, dom, callback) {
 		if (app.source === "pmc") {
 			dom = dom.getElementsByTagName("article")[0];
 		}
 
 		var start = Date.now();
-
 		/* import the XSL stylesheet */
-		if (data.xslt == "saxonce") {
-			var processor = Saxon.newXSLT20Processor(xsl);
-		} else {
-			var processor = new XSLTProcessor();
-			processor.importStylesheet(xsl);
-		}
 
-		var loaded = Date.now();
+		var processor = new XSLT2Processor();
+		processor.importStylesheet(xsl).then(function() {
+			var loaded = Date.now();
+			var fragment = processor.transformToFragment(dom, document);
+			var end = Date.now();
 
-		/* transform the XML document to an XHTML fragment */
-		var fragment = processor.transformToFragment(dom, document);
+			if (typeof console != "undefined") {
+				//console.log("loading the stylesheet took " + (loaded - start) + "ms, first transformation took " + (end - loaded) + "ms, second transformation took " + (second - end) + "ms,");
+				console.log("loading the stylesheet took " + (loaded - start) + "ms, first transformation took " + (end - loaded) + "ms");
+			}
 
-		var end = Date.now();
+			var node = document.createElement("div");
+			node.appendChild(fragment);
 
-		if (typeof console != "undefined") {
-			//console.log("loading the stylesheet took " + (loaded - start) + "ms, first transformation took " + (end - loaded) + "ms, second transformation took " + (second - end) + "ms,");
-			console.log("loading the stylesheet took " + (loaded - start) + "ms, first transformation took " + (end - loaded) + "ms");
-		}
-
-		var node = document.createElement("div");
-		node.appendChild(fragment);
-
-		return node.firstChild;
+			callback(node.firstChild);
+		})
 	};
 
 	/* convert the article xml to HTML and append it to the document */
 	var transformDocument = function(xmlXHR, xslXHR){
-		var html = transformXML(xslXHR[0], xmlXHR[0]);
-		var article = $(html);
+		transformXML(xslXHR[0], xmlXHR[0], function(html) {
+			var article = $(html);
+			console.log(article);
+			document.title = article.find("h1").text();
 
-		document.title = article.find("h1").text();
+			var published = article.find("header time");
+			published.text(moment(published.text()).format("MMMM Do, YYYY"));
 
-		var published = article.find("header time");
-		published.text(moment(published.text()).format("MMMM Do, YYYY"));
+			/* fix up the document before inserting it */
+			$(document).trigger("article.loaded", article);
 
-		/* fix up the document before inserting it */
-		$(document).trigger("article.loaded", article);
+			//article.find("img[position=float],figure[position=float] img").addClass("floating-image");
 
-		//article.find("img[position=float],figure[position=float] img").addClass("floating-image");
+			/* insert the HTML fragment into the document */
+			article.appendTo("body");
 
-		/* insert the HTML fragment into the document */
-		article.appendTo("body");
+			$(document).trigger("article.ready", article);
 
-		$(document).trigger("article.ready", article);
+			var id = location.hash;
+			if (id) {
+				var targetNode = $(id);
+				//targetNode.removeClass("collapsed");
 
-		var id = location.hash;
-		if (id) {
-			var targetNode = $(id);
-			//targetNode.removeClass("collapsed");
-
-			if (targetNode.length) {
-				window.setTimeout(function() {
-					$("html, body").animate({
-					   scrollTop: targetNode.offset().top
+				if (targetNode.length) {
+					window.setTimeout(function() {
+						$("html, body").animate({
+						   scrollTop: targetNode.offset().top
+						}, 500);
 					}, 500);
-				}, 500);
+				}
 			}
-		}
+		});
 	};
 
 	var xmlURL = function() {
