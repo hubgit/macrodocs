@@ -160,6 +160,9 @@ main > section > section,
   border-radius: 3px;
   z-index: 10;
   position: relative;
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 main > section > section h3,
