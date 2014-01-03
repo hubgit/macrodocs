@@ -163,7 +163,9 @@
     <xsl:element name="{$heading}">
       <xsl:attribute name="class">heading</xsl:attribute>
       <xsl:attribute name="data-ignore-class"></xsl:attribute>
-      <xsl:apply-templates select="node()|@*"/>
+      <span>
+        <xsl:apply-templates select="node()|@*"/>
+      </span>
     </xsl:element>
   </xsl:template>
 
