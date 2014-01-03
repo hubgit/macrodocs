@@ -96,6 +96,8 @@ $(document).on("article.loaded", function(event, article){
 			$(this).remove();
 		}
 	});
+	
+	article.find("#introduction > h2").empty();
 
 	var scrollToTop = function() {
 		$("html, body").animate({ scrollTop: 0 }, "fast");
