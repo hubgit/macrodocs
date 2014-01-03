@@ -5,11 +5,6 @@ header {
   line-height: 1;
 }
 
-nav {
-  max-width: 60em;
-  margin: 0 auto;
-}
-
 h1, h2, h3, h4, h5, h6 {
   color: #222;
   line-height: 1;
@@ -457,7 +452,8 @@ section.collapsed .show {
 }
 
 nav {
-  margin-left: 3em;
+  max-width: 60em;
+  margin: 0 auto;
 }
 
 header .provider {
