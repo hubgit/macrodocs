@@ -475,7 +475,7 @@ dt:after {
   background: white;
 }
 
-section:first-of-type p:first-of-type:first-letter {
+main > section:first-of-type > p:first-of-type:first-letter {
   float: left;
   font-size: 350%;
   margin-top: 20px;
