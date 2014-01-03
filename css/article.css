@@ -499,6 +499,11 @@ section > p:not(:first-of-type) {
   text-indent: 2em;
 }
 
+main > section > p,
+nav {
+  padding: 0 2rem;
+}
+
 /*
 #background p:not(:last-of-type),
 #introduction p:not(:last-of-type),
