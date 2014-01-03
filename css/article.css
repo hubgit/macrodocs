@@ -504,6 +504,13 @@ nav {
   padding: 0 2rem;
 }
 
+main > section > h2 > span {
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 /*
 #background p:not(:last-of-type),
 #introduction p:not(:last-of-type),
