@@ -100,7 +100,7 @@ figcaption p,
   margin-bottom: 0.5rem;
   font-family: "Gill Sans", sans-serif;
   line-height: 1.2;
-  font-size: 105%;
+  font-size: 1rem;
 }
 
 .table-wrap .alternatives .graphic {
@@ -489,7 +489,7 @@ main > section:first-of-type > p:first-of-type:first-letter {
 
 section > p {
   max-width: 60rem;
-  font-size: 120%;
+  font-size: 1.2rem;
   line-height: 1.6em;
   margin-left: auto;
   margin-right: auto;
