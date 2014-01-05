@@ -164,6 +164,7 @@ main > section > section h3,
 .pseudo-main > section h3 {
   padding-left: 2rem;
   padding-right: 2rem;
+  margin-top: 2rem;
 }
 
 main > section > section p,
