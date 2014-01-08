@@ -35,3 +35,15 @@ $(document).on("article.loaded", function(event, article){
 		supportingSection.remove();
 	}
 });
+
+$(document).on("article.ready", function() {
+  var $figures = $("figure");
+  var $contained = $("main > section > p").eq(0); // TODO: article?
+  var $window = $(window);
+  
+  $window.on("resize", function() {
+    var margin = ($window.width() - $contained.width()) / 2;
+    var marginText = -margin + "px";
+    $figures.css({ "margin-left": marginText, "margin-right": marginText });
+  }).trigger("resize");	
+});
