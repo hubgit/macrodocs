@@ -37,7 +37,7 @@ $(document).on("article.loaded", function(event, article){
 });
 
 $(document).on("article.ready", function() {
-  var $figures = $("figure");
+  var $figures = $("figure, .table-wrap");
   var $contained = $("main > section > p").eq(0); // TODO: article?
   var $window = $(window);
   
