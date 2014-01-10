@@ -606,7 +606,10 @@
 
   <!-- id attribute (direct copy) -->
   <xsl:template match="@id | @colspan | @rowspan | @align | @style">
-    <xsl:copy-of select="."/>
+    <!--<xsl:copy-of select="."/>-->
+    <xsl:attribute name="{local-name()}">
+      <xsl:value-of select="."/>
+    </xsl:attribute>
   </xsl:template>
 
   <!-- abbrev/@alt -> abbr/@title -->
