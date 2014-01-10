@@ -37,13 +37,19 @@ $(document).on("article.loaded", function(event, article){
 });
 
 $(document).on("article.ready", function() {
-  var $figures = $("figure, .table-wrap");
-  var $contained = $("main > section > p").eq(0); // TODO: article?
-  var $window = $(window);
-  
-  $window.on("resize", function() {
-    var margin = ($window.width() - $contained.width()) / 2;
-    var marginText = -margin + "px";
-    $figures.css({ "margin-left": marginText, "margin-right": marginText });
-  }).trigger("resize");	
+	var figures = $("figure, .table-wrap, .supplementary-material");
+	var $window = $(window);
+
+	$window.on("resize", function() {
+		var windowWidth = $window.width();
+
+		figures.each(function() {
+			var figure = $(this);
+			var figureWidth = figure.outerWidth();
+			var margin = (windowWidth - figureWidth) / 2;
+			var marginText = -margin + "px";
+			figure.css({ "margin-left": marginText, "margin-right": marginText });
+		});
+	}).trigger("resize");
+
 });
