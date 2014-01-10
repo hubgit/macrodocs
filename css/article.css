@@ -175,7 +175,7 @@ main > section > section p,
 }
 
 figure {
-  display: flex;
+  display: flex !important;
   flex-flow: row wrap;
 }
 
