@@ -57,8 +57,6 @@ $(document).on("article.ready", function() {
 			}
 		});
 
-		/*
-
 		var windowWidth = $window.width();
 
 		figures.each(function() {
@@ -68,7 +66,5 @@ $(document).on("article.ready", function() {
 			var marginText = -margin + "px";
 			figure.css({ "margin-left": marginText, "margin-right": marginText });
 		});
-
-		*/
 	}).trigger("resize");
 });
