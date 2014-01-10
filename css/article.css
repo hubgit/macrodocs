@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3 {
-  padding: 0 4rem;
+  padding: 0 2rem;
 }
 
 h1 {
@@ -21,6 +21,7 @@ h1 {
   margin: 1.5rem 0;
   padding: 0;
   letter-spacing: -1px;
+  line-height: 1.1;
 }
 
 h2 {
@@ -174,20 +175,18 @@ main > section > section p,
 }
 
 figure {
-  display: -webkit-flex;
-  display: -moz-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-  -moz-flex-flow: row wrap;
   flex-flow: row wrap;
 }
 
 figure .image-container,
 figure figcaption {
-  -webkit-flex: 1 25rem;
-  -moz-flex: 1 25rem;
-  flex: 1 25rem;
+  flex: 1;
   padding: 0 10px;
+}
+
+figure figcaption {
+  min-width: 25em;
 }
 
 figure > p {
@@ -391,6 +390,11 @@ ul, ol {
   margin:  0 0 1rem 4rem;
 }
 
+section ul,
+section ol {
+  padding-left: 4rem;
+}
+
 li p {
   margin-bottom: 0 !important;
   margin-left: 0 !important;
@@ -488,10 +492,15 @@ main > section:first-of-type > p:first-of-type:first-letter {
   color: #992E00;
 }
 
-section > p {
-  max-width: 60rem;
+section > p,
+section > ul,
+section > ol {
   font-size: 1.2rem;
   line-height: 1.6em;
+}
+
+main > section > * {
+  max-width: 60rem;
   margin-left: auto;
   margin-right: auto;
 }

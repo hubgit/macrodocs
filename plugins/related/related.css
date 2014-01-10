@@ -1,7 +1,10 @@
 #related-articles ul {
 	list-style-type: none;
+	padding-left: 0;
+	font-size: 1rem;
 }
 
 #related-articles li {
 	line-height: 1.5;
+	margin-bottom: 0.1rem;
 }

@@ -33,6 +33,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 section > p,
+section > ul,
+section > ol {
+    font-size: 1.1rem;
+}
+
+section > p,
 footer > p {
 	margin-bottom: 0.5rem;
 }
@@ -42,6 +48,19 @@ section section .table-wrap {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
+main > section > p,
+nav {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+main > section:first-of-type > p:first-of-type:first-letter {
+  font-size: 300%;
+  margin-top: 15px;
+  margin-right: 2px;
+}
+
 
 figure {
 	padding: 1rem 1rem 0.5rem;
@@ -98,3 +117,8 @@ nav {
 #related-articles ul {
 	margin-left: 1rem;
 }
+
+figure .graphic {
+	margin: 0 0 1rem;
+}
+
