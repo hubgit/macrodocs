@@ -62,6 +62,7 @@ $(document).on("article.ready", function(event, article){
 			html: true,
 			trigger: "hover",
 			placement: popoverPlacement,
+			container: "body",
 			title: function() {
 				return getRefNode(this).find(".article-title").clone();
 			},
