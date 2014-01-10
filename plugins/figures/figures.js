@@ -37,10 +37,28 @@ $(document).on("article.loaded", function(event, article){
 });
 
 $(document).on("article.ready", function() {
-	var figures = $("figure, .table-wrap, .supplementary-material");
 	var $window = $(window);
+	var figures = $("figure, .table-wrap, .supplementary-material");
+	var tables = $(".table-wrap table");
 
 	$window.on("resize", function() {
+		tables.each(function() {
+			var table = $(this);
+			var tableWidth = table.width();
+			var parentWidth = table.parent().width();
+
+			if (tableWidth > parentWidth) {
+				var scale = parentWidth / tableWidth;
+
+				table.css({
+					'transform-origin': 'top left',
+					'transform': 'scale(' + scale + ')',
+				});
+			}
+		});
+
+		/*
+
 		var windowWidth = $window.width();
 
 		figures.each(function() {
@@ -50,6 +68,7 @@ $(document).on("article.ready", function() {
 			var marginText = -margin + "px";
 			figure.css({ "margin-left": marginText, "margin-right": marginText });
 		});
-	}).trigger("resize");
 
+		*/
+	}).trigger("resize");
 });
