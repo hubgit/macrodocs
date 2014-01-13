@@ -38,7 +38,7 @@ $(document).on("article.loaded", function(event, article){
 
 $(document).on("article.ready", function() {
 	var $window = $(window);
-	var figures = $("figure, .table-wrap, .supplementary-material");
+	var figures = $("figure");
 	var tables = $(".table-wrap table");
 
 	$window.on("resize", function() {
