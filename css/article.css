@@ -461,6 +461,9 @@ section.collapsed .show {
 nav {
   max-width: 60rem;
   margin: 0 auto;
+  border: 1px solid #ddd;
+  background: white;
+  padding: 1rem 2rem 0;
 }
 
 header .provider {
@@ -511,8 +514,7 @@ section > p:not(:first-of-type) {
   text-indent: 2em;
 }
 
-main > section > p,
-nav {
+main > section > p {
   padding: 0 2rem;
 }
 
