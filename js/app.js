@@ -162,6 +162,8 @@ $(function() {
 		if (data.q) {
 			$("#index [name=q]").val(data.q);
 			searchPMC(data.q);
+		} else {
+			searchPMC("plos one[ta]");	
 		}
 	}
 });
