@@ -370,9 +370,16 @@ td {
   border: 1px solid #CCC;
 }
 
+/* attr() is not supported for CSS values other than content */
+
 table *[align=left],
 table *[align=left] td {
   text-align: left;
+}
+
+table *[align=center],
+table *[align=center] td {
+  text-align: center;
 }
 
 table a.xref {
