@@ -27,7 +27,14 @@ $(function() {
 
 	var transformXML = function(xsl, dom, callback) {
 		if (app.source === "pmc") {
-			dom = dom.getElementsByTagName("article")[0];
+			var article = dom.getElementsByTagName("article")[0];
+
+			var dom = document.implementation.createDocument(null, "article", null);
+
+			while (article.firstChild) {
+				var node = dom.adoptNode(article.firstChild);
+				dom.documentElement.appendChild(node);
+			}
 		}
 
 		var start = Date.now();
@@ -163,7 +170,7 @@ $(function() {
 			$("#index [name=q]").val(data.q);
 			searchPMC(data.q);
 		} else {
-			searchPMC("plos one[ta]");	
+			searchPMC("plos one[ta]");
 		}
 	}
 });
