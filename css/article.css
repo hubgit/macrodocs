@@ -28,7 +28,7 @@ h1 {
   line-height: 1.1;
 }
 
-h2:not(figure h2) {
+section > h2 {
  font-weight: 400;
  /*background: #444;*/
  background: rgb(172, 67, 67);
