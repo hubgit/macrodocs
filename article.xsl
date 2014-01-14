@@ -580,10 +580,10 @@
     <xsl:variable name="pmid" select="pub-id[@pub-id-type='pmid']"/>
     <xsl:choose>
       <xsl:when test="$doi">
-        <div class="altmetric-embed" data-badge-popover="left" data-doi="{$doi}"></div>
+        <div class="altmetric-embed-lazy" data-badge-popover="left" data-doi="{$doi}"></div>
       </xsl:when>
       <xsl:when test="$pmid">
-        <div class="altmetric-embed" data-badge-popover="left" data-pmid="{$pmid}"></div>
+        <div class="altmetric-embed-lazy" data-badge-popover="left" data-pmid="{$pmid}"></div>
       </xsl:when>
     </xsl:choose>
   </xsl:template>

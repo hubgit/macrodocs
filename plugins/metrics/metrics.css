@@ -1,0 +1,19 @@
+nav {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+nav > ol {
+	flex: 3;
+	min-width: 30rem;
+}
+
+nav > div {
+	flex: 1;
+	margin: 0 1rem 1rem;
+	min-width: 15rem;
+}
+
+.altmetric-embed p {
+	display: none;
+}

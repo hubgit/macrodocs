@@ -96,7 +96,7 @@ $(document).on("article.loaded", function(event, article){
 			$(this).remove();
 		}
 	});
-	
+
 	article.find("#introduction > h2").empty();
 
 	var scrollToTop = function() {
@@ -159,7 +159,7 @@ $(document).on("article.loaded", function(event, article){
 
 			altmetricLoaded = true;
 
-			$(".altmetric-embed").each(function() {
+			$(".altmetric-embed-lazy").each(function() {
 				var node = $(this);
 				var doi = node.data("doi");
 				var pmid = node.data("pmid");
