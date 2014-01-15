@@ -442,6 +442,8 @@ li p {
   padding-left: 0.5em !important;
   margin-bottom: 0 !important;
   margin-left: 0 !important;
+  vertical-align: inline-block;
+  text-align: bottom;
 }
 
 /*
