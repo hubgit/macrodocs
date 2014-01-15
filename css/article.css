@@ -67,11 +67,18 @@ section li {
 
 figure, .table-wrap {
   padding: 2rem 3rem 1rem;
-  margin: 2rem auto;
   text-align: left;
   overflow-y: auto;
-  background: white;
   box-sizing: border-box;
+}
+
+figure {
+    background: white;
+    margin: 2rem auto;
+}
+
+.table-wrap {
+    margin: 2rem 0;
 }
 
 section section > figure,
@@ -340,9 +347,9 @@ p > .row {
 table {
   border: 1px solid #AAA;
   margin: 1rem 0;
-  margin: 0 auto;
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
   font-weight: 200;
+  background: #f6f6f6;
 }
 
 .table-wrap-foot {
@@ -351,7 +358,7 @@ table {
 }
 
 thead {
-  background: whiteSmoke;
+  background: rgb(228, 223, 223);
   border-bottom: 1px solid #AAA;
 }
 
