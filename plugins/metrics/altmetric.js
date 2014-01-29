@@ -20,6 +20,7 @@ $(document).on("article.ready", function(event, article){
 	$("<div/>", {
 		"data-badge-type": "medium-donut",
 		"data-badge-details": "below",
+		"data-hide-no-mentions": "true",
 		"data-doi": doi,
 	}).addClass("altmetric-embed").appendTo(parent);
 
