@@ -17,4 +17,5 @@ body {
   background-color: rgb(233, 227, 211);
   padding-bottom: 4rem;
   max-width: 60rem;
+  margin: 0 auto;
 }
