@@ -26,3 +26,7 @@
 	background: #fff;
 	border-radius: 2px;
 }
+
+#index li a {
+	display: block;
+}
