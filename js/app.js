@@ -170,7 +170,7 @@ $(function() {
 			$("#index [name=q]").val(data.q);
 			searchPMC(data.q);
 		} else {
-			searchPMC("plos one[ta]");
+			searchPMC("plos one[ta] OR peerj[ta] OR elife[ta] OR scientific reports[ta] OR f1000 research[ta]");
 		}
 	}
 });
