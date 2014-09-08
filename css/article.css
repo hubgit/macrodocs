@@ -31,7 +31,7 @@ h1 {
 section > h2 {
  font-weight: 400;
  /*background: #444;*/
- background: rgb(172, 67, 67);
+ /*background: rgb(172, 67, 67);*/
  color: #DDD8C5;
  font-size: 1.8rem;
  margin-top: 2rem;
@@ -166,8 +166,8 @@ main > section > section,
 .pseudo-main > section {
   margin: 2rem;
   border: 1px solid transparent; /* enforce margins within */
-  background: #F1F0E8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+  /*background: #F1F0E8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);*/
   border-radius: 3px;
   z-index: 10;
   position: relative;
@@ -211,7 +211,7 @@ figure > p {
 
 figure > p[content-type="supplemental-figure"] {
   margin: 1rem 0;
-  background-color: #DDD8C5;
+  /*background-color: #DDD8C5;*/
   padding: 1rem 0;
 }
 
