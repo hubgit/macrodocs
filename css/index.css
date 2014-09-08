@@ -22,11 +22,15 @@
 	line-height: 1.4;
 	box-shadow: 0 1px 2px #aaa;
 	margin: 10px 0;
-	padding: 10px;
 	background: #fff;
-	border-radius: 2px;
 }
 
 #index li a {
 	display: block;
+	padding: 10px;
+}
+
+#index li a {
+	text-decoration: none;
+	background-color: #f6f6f6;
 }
