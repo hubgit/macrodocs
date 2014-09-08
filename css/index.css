@@ -28,9 +28,10 @@
 #index li a {
 	display: block;
 	padding: 10px;
+	background-color: #f6f6f6;
 }
 
-#index li a {
+#index li a:hover {
 	text-decoration: none;
-	background-color: #f6f6f6;
+	background-color: #ddd;
 }
