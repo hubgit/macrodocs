@@ -32,7 +32,7 @@ var searchPMC = function(term) {
 			var data = {
 			    tool: "macrodocs",
 			    email: "alf@hubmed.org",
-			    db: "pubmed",
+			    db: "pmc",
 			    retmode: "xml",
 			    id: result.map(function(item) { return item.id }).join(","),
 			};
