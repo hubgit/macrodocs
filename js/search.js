@@ -47,9 +47,8 @@ var searchPMC = function(term) {
 					var template = [
 						"/eSummaryResult/DocSum",
 						{
-							id: "Id",
+							pmc: "Id",
 							doi: "Item[@Name='ArticleIds']/Item[@Name='doi']",
-							pmc: "Item[@Name='ArticleIds']/Item[@Name='pmc']",
 							title: "Item[@Name='Title']",
 						}
 					];
