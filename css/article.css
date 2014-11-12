@@ -481,7 +481,7 @@ nav {
   margin: 0 auto 2rem;
   border: 1px solid #ddd;
   background: white;
-  padding: 1rem 2rem 0;
+  padding: 2rem 2rem 1rem;
 }
 
 header .provider {
