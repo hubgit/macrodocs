@@ -30,12 +30,10 @@ h1 {
 
 section > h2 {
  font-weight: 400;
- /*background: #444;*/
- background: rgb(172, 67, 67);
- /*color: #DDD8C5;*/
- color: #fff;
- font-size: 1.8rem;
- margin-top: 2rem;
+ color: rgb(172, 67, 67);
+ font-family: Georgia, serif;
+ font-size: 3rem;
+ margin-top: 3rem;
  margin-bottom: 2rem;
  line-height: 2;
  text-transform: uppercase;
