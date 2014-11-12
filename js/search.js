@@ -4,9 +4,9 @@ var searchPMC = function(term) {
 	var data = {
 	    tool: "macrodocs",
 	    email: "alf@hubmed.org",
-	    db: "pubmed",
+	    db: "pmc",
 	    retmode: "xml",
-	    term: term + " AND pubmed pmc open access[filter] AND free full text[filter]"
+	    term: term + " AND open access[filter]"
 	};
 
 	$.ajax({
