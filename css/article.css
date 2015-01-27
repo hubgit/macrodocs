@@ -106,6 +106,7 @@ figcaption .heading,
   font-weight: normal;
   letter-spacing: 0;
   color: #777;
+  font-weight: 200;
 }
 
 figcaption p,
