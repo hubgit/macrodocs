@@ -44,8 +44,8 @@
 
       <p class="context event" data-ignore-class="">
         <xsl:call-template name="canonical"/>
-        <xsl:text> · </xsl:text>
-        <xsl:call-template name="provider"/>
+        <!--<xsl:text> · </xsl:text>
+        <xsl:call-template name="provider"/>-->
       </p>
     </header>
   </xsl:template>
