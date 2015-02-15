@@ -3,14 +3,20 @@
 	padding: 1rem 2rem;
 }
 
+#index a {
+	color: blue;
+}
+
+#index fieldset {
+	margin-bottom: 20px;
+}
+
 #index .input-group {
-	width: 400px;
 	margin-bottom: 5px;
 }
 
 #index .help-block {
 	font-size: 80%;
-	margin-left: 1rem;
 }
 
 #index ul {
@@ -20,17 +26,14 @@
 
 #index li {
 	line-height: 1.4;
-	box-shadow: 0 1px 2px #aaa;
 	margin: 10px 0;
 	background: #fff;
 }
 
 #index li a {
 	display: block;
-	padding: 10px;
-	background-color: #f6f6f6;
 }
 
-#index li a:hover {
-	text-decoration: none;
+#index .pubdate {
+	font-weight: 200;
 }

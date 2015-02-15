@@ -50,6 +50,8 @@ var searchPMC = function(term) {
 							pmc: "Id",
 							doi: "Item[@Name='ArticleIds']/Item[@Name='doi']",
 							title: "Item[@Name='Title']",
+							pubdate: "Item[@Name='PubDate']",
+							epubdate: "Item[@Name='EPubDate']",
 						}
 					];
 
@@ -59,8 +61,9 @@ var searchPMC = function(term) {
 
 					result.forEach(function(item) {
 						var url = item.doi ? $.param({ doi: item.doi }) : $.param({ pmc: item.pmc.replace(/^PMC/, "") })
-						var title = $("<a/>").attr("href", "./?" + url).text(item.title);
-						$("<li/>").append(title).appendTo(container);
+						var title = $("<a/>", { href: "./?" + url, text: item.title });
+						var date = $("<span/>", { class: 'pubdate', text: item.epubdate || item.pubdate });
+						$("<li/>").append(title).append(date).appendTo(container);
 					});
 
 					resultsContainer.append(container);
