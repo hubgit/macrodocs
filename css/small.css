@@ -56,8 +56,8 @@ nav {
 }
 
 main > section:first-of-type > p:first-of-type:first-letter {
-  font-size: 300%;
-  margin-top: 15px;
+  font-size: 200%;
+  margin-top: -8px;
   margin-right: 2px;
 }
 
@@ -121,4 +121,3 @@ nav {
 figure .graphic {
 	margin: 0 0 1rem;
 }
-
