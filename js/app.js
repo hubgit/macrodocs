@@ -101,7 +101,7 @@ $(function() {
 				return "http://xml.macropus.org/?scheme=gist&id=" + encodeURIComponent(app.id);
 
 			case "pmc":
-				return "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=" + encodeURIComponent(app.id);
+				return "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=" + encodeURIComponent(app.id);
 
 			default:
 				return app.id;
@@ -126,7 +126,7 @@ $(function() {
 
 	var fetchDOI = function(doi) {
 		$.ajax({
-			url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+			url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
 			data: {
 				tool: "macrodocs",
 				email: "alf@hubmed.org",
