@@ -13,7 +13,7 @@ $(document).on("article.ready", function(event, article){
 	};
 
 	$.ajax({
-		url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi",
+		url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi",
 		data: data,
 		dataType: "xml",
 		success: function(doc) {
@@ -41,7 +41,7 @@ $(document).on("article.ready", function(event, article){
 			};
 
 			$.ajax({
-				url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi",
+				url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi",
 				data: data,
 				dataType: "xml",
 				success: function(doc) {
