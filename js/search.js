@@ -10,7 +10,7 @@ var searchPMC = function(term) {
 	};
 
 	$.ajax({
-		url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+		url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
 		data: data,
 		dataType: "xml",
 		success: function(doc) {
@@ -38,7 +38,7 @@ var searchPMC = function(term) {
 			};
 
 			$.ajax({
-				url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",
+				url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",
 				data: data,
 				dataType: "xml",
 				success: function(doc) {
