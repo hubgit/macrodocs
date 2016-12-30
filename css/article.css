@@ -51,8 +51,8 @@ h4 {
 p {
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-hyphens: auto;
-  hyphens: auto;
+  /*-webkit-hyphens: auto;
+  hyphens: auto;*/
 }
 
 li {
