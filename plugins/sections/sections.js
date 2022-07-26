@@ -166,9 +166,9 @@ $(document).on("article.loaded", function(event, article){
 				var url;
 
 				if (doi) {
-					url = "http://api.altmetric.com/v1/doi/" + doi;
+					url = "https://api.altmetric.com/v1/doi/" + doi;
 				} else if (pmid) {
-					url = "http://api.altmetric.com/v1/pmid/" + pmid;
+					url = "https://api.altmetric.com/v1/pmid/" + pmid;
 				}
 
 				if (!url) {
@@ -179,7 +179,7 @@ $(document).on("article.loaded", function(event, article){
 					url: url,
 					dataType: "json",
 					success: function(data) {
-						var url = "http://www.altmetric.com/details.php?domain=" + window.location.host + "&citation_id=" + data.altmetric_id;
+						var url = "https://www.altmetric.com/details.php?domain=" + window.location.host + "&citation_id=" + data.altmetric_id;
 						var style = "display: inline-block; background-image: url(https://d1uo4w7k31k5mn.cloudfront.net/v2/" + Math.ceil(data.score) + ".png); width: 88px; height: 18px;";
 
 						$("<a/>", { href: url, style: style, target: "_new" }).appendTo(node);

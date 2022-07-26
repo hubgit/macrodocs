@@ -38,7 +38,7 @@ $(document).on("article.loaded", function(event, article){
 				return "https://api.github.com/gists/" + encodeURIComponent(app.id) + "/" + src;
 
 			case "pmc":
-				return "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC" + app.id + "/bin/" + src;
+				return "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC" + app.id + "/bin/" + src;
 
 			case "url":
 				return basedURL(src);
@@ -54,7 +54,7 @@ $(document).on("article.loaded", function(event, article){
 				return "https://gist.github.com/raw/" + encodeURIComponent(app.id) + "/" + src;
 
 			case "pmc":
-				return "http://www.ncbi.nlm.nih.gov/pmc/articles/PMC" + app.id + "/bin/" + src.replace(/\.jpg$/, "") + ".jpg";
+				return "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC" + app.id + "/bin/" + src.replace(/\.jpg$/, "") + ".jpg";
 
 			case "url":
 				return basedURL(src);

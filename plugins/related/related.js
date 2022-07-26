@@ -66,7 +66,7 @@ $(document).on("article.ready", function(event, article){
 					};
 
 					$.ajax({
-						url: "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",
+						url: "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",
 						data: data,
 						dataType: "xml",
 						success: function(doc) {

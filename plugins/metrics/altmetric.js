@@ -7,7 +7,7 @@ $(document).on("article.ready", function(event, article){
 		return;
 	}
 
-	var matches = url.attr("href").match(/^http:\/\/dx\.doi\.org\/(.+)/);
+	var matches = url.attr("href").match(/^https?:\/\/(?:dx\.)?doi\.org\/(.+)/);
 
 	if (!matches) {
 		return;

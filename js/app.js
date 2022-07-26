@@ -3,7 +3,7 @@ window.URL = window.URL || window.webkitURL;
 var $window = $(window);
 
 var fetchXSL = $.ajax({
-	url: "/article.xsl",
+	url: "article.xsl",
 	dataType: "xml"
 });
 
@@ -98,7 +98,7 @@ $(function() {
 		switch (app.source) {
 			case "gist":
 				//return "https://api.github.com/gists/" + encodeURIComponent(app.id) + "/article.xml";
-				return "http://xml.macropus.org/?scheme=gist&id=" + encodeURIComponent(app.id);
+				return "https://xml.macropus.org/?scheme=gist&id=" + encodeURIComponent(app.id);
 
 			case "pmc":
 				return "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=" + encodeURIComponent(app.id);
